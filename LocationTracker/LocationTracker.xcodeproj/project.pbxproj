@@ -8,16 +8,43 @@
 
 /* Begin PBXBuildFile section */
 		7CC2B1013B91920E31601D49 /* libPods-LocationTracker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EEE35712CF99DA7CD992BB4 /* libPods-LocationTracker.a */; };
+		9238AF381EC6FD54006C204E /* UIColor+LTTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238AF371EC6FD54006C204E /* UIColor+LTTheme.m */; };
+		9238AF3B1EC6FD8B006C204E /* UIFont+LTTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238AF3A1EC6FD8B006C204E /* UIFont+LTTheme.m */; };
+		9238AF401EC6FFCF006C204E /* LTTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238AF3F1EC6FFCF006C204E /* LTTabBarController.m */; };
+		9238AF421EC70000006C204E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9238AF411EC70000006C204E /* Main.storyboard */; };
+		9238AF471EC700A6006C204E /* History.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9238AF461EC700A6006C204E /* History.storyboard */; };
+		9238AF491EC700B9006C204E /* Launcher.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9238AF481EC700B9006C204E /* Launcher.storyboard */; };
+		9238AF4E1EC70225006C204E /* LTNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238AF4D1EC70225006C204E /* LTNavigationController.m */; };
+		9238AF551EC70A58006C204E /* LTBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238AF541EC70A58006C204E /* LTBaseViewController.m */; };
+		9238AF581EC70AFB006C204E /* LTLauncherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238AF571EC70AFB006C204E /* LTLauncherViewController.m */; };
+		9238AF5B1EC710C2006C204E /* LTHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238AF5A1EC710C2006C204E /* LTHistoryViewController.m */; };
 		9245B9941EC624180044F47D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9245B98B1EC624180044F47D /* AppDelegate.m */; };
 		9245B9951EC624180044F47D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9245B98F1EC624180044F47D /* Assets.xcassets */; };
 		9245B9971EC624180044F47D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9245B9911EC624180044F47D /* LaunchScreen.storyboard */; };
 		9245B9981EC624180044F47D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9245B9921EC624180044F47D /* main.m */; };
-		9245B9991EC624180044F47D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9245B9931EC624180044F47D /* Main.storyboard */; };
+		9245B9A91EC63D270044F47D /* LTThemeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9245B9A81EC63D270044F47D /* LTThemeHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0EEE35712CF99DA7CD992BB4 /* libPods-LocationTracker.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LocationTracker.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		36AD4B9F3C68D7BC7346C71D /* Pods-LocationTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationTracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-LocationTracker/Pods-LocationTracker.release.xcconfig"; sourceTree = "<group>"; };
+		9238AF361EC6FD54006C204E /* UIColor+LTTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+LTTheme.h"; sourceTree = "<group>"; };
+		9238AF371EC6FD54006C204E /* UIColor+LTTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+LTTheme.m"; sourceTree = "<group>"; };
+		9238AF391EC6FD8B006C204E /* UIFont+LTTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+LTTheme.h"; sourceTree = "<group>"; };
+		9238AF3A1EC6FD8B006C204E /* UIFont+LTTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+LTTheme.m"; sourceTree = "<group>"; };
+		9238AF3E1EC6FFCF006C204E /* LTTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTTabBarController.h; sourceTree = "<group>"; };
+		9238AF3F1EC6FFCF006C204E /* LTTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTTabBarController.m; sourceTree = "<group>"; };
+		9238AF411EC70000006C204E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		9238AF461EC700A6006C204E /* History.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = History.storyboard; sourceTree = "<group>"; };
+		9238AF481EC700B9006C204E /* Launcher.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Launcher.storyboard; sourceTree = "<group>"; };
+		9238AF4C1EC70225006C204E /* LTNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTNavigationController.h; sourceTree = "<group>"; };
+		9238AF4D1EC70225006C204E /* LTNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTNavigationController.m; sourceTree = "<group>"; };
+		9238AF531EC70A58006C204E /* LTBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTBaseViewController.h; sourceTree = "<group>"; };
+		9238AF541EC70A58006C204E /* LTBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTBaseViewController.m; sourceTree = "<group>"; };
+		9238AF561EC70AFB006C204E /* LTLauncherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTLauncherViewController.h; sourceTree = "<group>"; };
+		9238AF571EC70AFB006C204E /* LTLauncherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTLauncherViewController.m; sourceTree = "<group>"; };
+		9238AF591EC710C2006C204E /* LTHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTHistoryViewController.h; sourceTree = "<group>"; };
+		9238AF5A1EC710C2006C204E /* LTHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTHistoryViewController.m; sourceTree = "<group>"; };
 		9245B95E1EC622A10044F47D /* LocationTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocationTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9245B98A1EC624180044F47D /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9245B98B1EC624180044F47D /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -25,7 +52,8 @@
 		9245B9901EC624180044F47D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9245B9911EC624180044F47D /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9245B9921EC624180044F47D /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		9245B9931EC624180044F47D /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		9245B9A71EC63D270044F47D /* LTThemeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTThemeHelper.h; sourceTree = "<group>"; };
+		9245B9A81EC63D270044F47D /* LTThemeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTThemeHelper.m; sourceTree = "<group>"; };
 		F3866FF760573E621E34C416 /* Pods-LocationTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationTracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LocationTracker/Pods-LocationTracker.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -56,6 +84,86 @@
 				36AD4B9F3C68D7BC7346C71D /* Pods-LocationTracker.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		9238AF311EC6FC5A006C204E /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				9238AF3C1EC6FFCF006C204E /* Storyboard */,
+				9238AF3D1EC6FFCF006C204E /* TabBarController */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		9238AF351EC6FD12006C204E /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				9238AF361EC6FD54006C204E /* UIColor+LTTheme.h */,
+				9238AF371EC6FD54006C204E /* UIColor+LTTheme.m */,
+				9238AF391EC6FD8B006C204E /* UIFont+LTTheme.h */,
+				9238AF3A1EC6FD8B006C204E /* UIFont+LTTheme.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		9238AF3C1EC6FFCF006C204E /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				9238AF411EC70000006C204E /* Main.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		9238AF3D1EC6FFCF006C204E /* TabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				9238AF3E1EC6FFCF006C204E /* LTTabBarController.h */,
+				9238AF3F1EC6FFCF006C204E /* LTTabBarController.m */,
+			);
+			path = TabBarController;
+			sourceTree = "<group>";
+		};
+		9238AF431EC70080006C204E /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				9238AF461EC700A6006C204E /* History.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		9238AF451EC70096006C204E /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				9238AF481EC700B9006C204E /* Launcher.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		9238AF4B1EC70200006C204E /* NavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				9238AF4C1EC70225006C204E /* LTNavigationController.h */,
+				9238AF4D1EC70225006C204E /* LTNavigationController.m */,
+			);
+			path = NavigationController;
+			sourceTree = "<group>";
+		};
+		9238AF511EC70480006C204E /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				9238AF561EC70AFB006C204E /* LTLauncherViewController.h */,
+				9238AF571EC70AFB006C204E /* LTLauncherViewController.m */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		9238AF521EC70487006C204E /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				9238AF591EC710C2006C204E /* LTHistoryViewController.h */,
+				9238AF5A1EC710C2006C204E /* LTHistoryViewController.m */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		9245B9551EC622A10044F47D = {
@@ -106,6 +214,9 @@
 		9245B98D1EC624180044F47D /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				9245B9A61EC63CE70044F47D /* Theme */,
+				9238AF311EC6FC5A006C204E /* Main */,
+				9245B9A21EC63BD20044F47D /* Base Objects */,
 				9245B99B1EC6251C0044F47D /* Tabs */,
 			);
 			path = Source;
@@ -118,7 +229,6 @@
 				9245B9901EC624180044F47D /* Info.plist */,
 				9245B9911EC624180044F47D /* LaunchScreen.storyboard */,
 				9245B9921EC624180044F47D /* main.m */,
-				9245B9931EC624180044F47D /* Main.storyboard */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -126,8 +236,9 @@
 		9245B99B1EC6251C0044F47D /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
-				9245B99C1EC6251C0044F47D /* History */,
+				9238AF4B1EC70200006C204E /* NavigationController */,
 				9245B99D1EC6251C0044F47D /* Launcher */,
+				9245B99C1EC6251C0044F47D /* History */,
 			);
 			path = Tabs;
 			sourceTree = "<group>";
@@ -135,6 +246,8 @@
 		9245B99C1EC6251C0044F47D /* History */ = {
 			isa = PBXGroup;
 			children = (
+				9238AF521EC70487006C204E /* ViewControllers */,
+				9238AF431EC70080006C204E /* Storyboard */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -142,8 +255,29 @@
 		9245B99D1EC6251C0044F47D /* Launcher */ = {
 			isa = PBXGroup;
 			children = (
+				9238AF511EC70480006C204E /* ViewControllers */,
+				9238AF451EC70096006C204E /* Storyboard */,
 			);
 			path = Launcher;
+			sourceTree = "<group>";
+		};
+		9245B9A21EC63BD20044F47D /* Base Objects */ = {
+			isa = PBXGroup;
+			children = (
+				9238AF531EC70A58006C204E /* LTBaseViewController.h */,
+				9238AF541EC70A58006C204E /* LTBaseViewController.m */,
+			);
+			path = "Base Objects";
+			sourceTree = "<group>";
+		};
+		9245B9A61EC63CE70044F47D /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				9238AF351EC6FD12006C204E /* Categories */,
+				9245B9A71EC63D270044F47D /* LTThemeHelper.h */,
+				9245B9A81EC63D270044F47D /* LTThemeHelper.m */,
+			);
+			path = Theme;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,9 +342,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9238AF421EC70000006C204E /* Main.storyboard in Resources */,
 				9245B9971EC624180044F47D /* LaunchScreen.storyboard in Resources */,
 				9245B9951EC624180044F47D /* Assets.xcassets in Resources */,
-				9245B9991EC624180044F47D /* Main.storyboard in Resources */,
+				9238AF491EC700B9006C204E /* Launcher.storyboard in Resources */,
+				9238AF471EC700A6006C204E /* History.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,7 +405,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9238AF3B1EC6FD8B006C204E /* UIFont+LTTheme.m in Sources */,
+				9238AF401EC6FFCF006C204E /* LTTabBarController.m in Sources */,
+				9245B9A91EC63D270044F47D /* LTThemeHelper.m in Sources */,
+				9238AF5B1EC710C2006C204E /* LTHistoryViewController.m in Sources */,
+				9238AF581EC70AFB006C204E /* LTLauncherViewController.m in Sources */,
+				9238AF551EC70A58006C204E /* LTBaseViewController.m in Sources */,
+				9238AF4E1EC70225006C204E /* LTNavigationController.m in Sources */,
 				9245B9981EC624180044F47D /* main.m in Sources */,
+				9238AF381EC6FD54006C204E /* UIColor+LTTheme.m in Sources */,
 				9245B9941EC624180044F47D /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -374,6 +518,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 4KQC9K68AM;
 				INFOPLIST_FILE = "$(SRCROOT)/LocationTracker/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.MaksymSavisko.LocationTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -387,6 +532,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 4KQC9K68AM;
 				INFOPLIST_FILE = "$(SRCROOT)/LocationTracker/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.MaksymSavisko.LocationTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -412,6 +558,7 @@
 				9245B9771EC622A10044F47D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
