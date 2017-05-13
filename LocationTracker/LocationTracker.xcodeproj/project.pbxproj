@@ -18,6 +18,8 @@
 		9238AF551EC70A58006C204E /* LTBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238AF541EC70A58006C204E /* LTBaseViewController.m */; };
 		9238AF581EC70AFB006C204E /* LTLauncherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238AF571EC70AFB006C204E /* LTLauncherViewController.m */; };
 		9238AF5B1EC710C2006C204E /* LTHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238AF5A1EC710C2006C204E /* LTHistoryViewController.m */; };
+		9238AF621EC71F72006C204E /* LocationTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238AF611EC71F72006C204E /* LocationTracker.m */; };
+		9238AF651EC71FB6006C204E /* LocationConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238AF641EC71FB6006C204E /* LocationConfiguration.m */; };
 		9245B9941EC624180044F47D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9245B98B1EC624180044F47D /* AppDelegate.m */; };
 		9245B9951EC624180044F47D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9245B98F1EC624180044F47D /* Assets.xcassets */; };
 		9245B9971EC624180044F47D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9245B9911EC624180044F47D /* LaunchScreen.storyboard */; };
@@ -45,6 +47,10 @@
 		9238AF571EC70AFB006C204E /* LTLauncherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTLauncherViewController.m; sourceTree = "<group>"; };
 		9238AF591EC710C2006C204E /* LTHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTHistoryViewController.h; sourceTree = "<group>"; };
 		9238AF5A1EC710C2006C204E /* LTHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTHistoryViewController.m; sourceTree = "<group>"; };
+		9238AF601EC71F72006C204E /* LocationTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationTracker.h; sourceTree = "<group>"; };
+		9238AF611EC71F72006C204E /* LocationTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationTracker.m; sourceTree = "<group>"; };
+		9238AF631EC71FB6006C204E /* LocationConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationConfiguration.h; sourceTree = "<group>"; };
+		9238AF641EC71FB6006C204E /* LocationConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationConfiguration.m; sourceTree = "<group>"; };
 		9245B95E1EC622A10044F47D /* LocationTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocationTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9245B98A1EC624180044F47D /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9245B98B1EC624180044F47D /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -166,6 +172,17 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
+		9238AF5C1EC71F00006C204E /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				9238AF601EC71F72006C204E /* LocationTracker.h */,
+				9238AF611EC71F72006C204E /* LocationTracker.m */,
+				9238AF631EC71FB6006C204E /* LocationConfiguration.h */,
+				9238AF641EC71FB6006C204E /* LocationConfiguration.m */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
 		9245B9551EC622A10044F47D = {
 			isa = PBXGroup;
 			children = (
@@ -214,9 +231,10 @@
 		9245B98D1EC624180044F47D /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				9245B9A61EC63CE70044F47D /* Theme */,
-				9238AF311EC6FC5A006C204E /* Main */,
 				9245B9A21EC63BD20044F47D /* Base Objects */,
+				9245B9A61EC63CE70044F47D /* Theme */,
+				9238AF5C1EC71F00006C204E /* Location */,
+				9238AF311EC6FC5A006C204E /* Main */,
 				9245B99B1EC6251C0044F47D /* Tabs */,
 			);
 			path = Source;
@@ -408,8 +426,10 @@
 				9238AF3B1EC6FD8B006C204E /* UIFont+LTTheme.m in Sources */,
 				9238AF401EC6FFCF006C204E /* LTTabBarController.m in Sources */,
 				9245B9A91EC63D270044F47D /* LTThemeHelper.m in Sources */,
+				9238AF651EC71FB6006C204E /* LocationConfiguration.m in Sources */,
 				9238AF5B1EC710C2006C204E /* LTHistoryViewController.m in Sources */,
 				9238AF581EC70AFB006C204E /* LTLauncherViewController.m in Sources */,
+				9238AF621EC71F72006C204E /* LocationTracker.m in Sources */,
 				9238AF551EC70A58006C204E /* LTBaseViewController.m in Sources */,
 				9238AF4E1EC70225006C204E /* LTNavigationController.m in Sources */,
 				9245B9981EC624180044F47D /* main.m in Sources */,
