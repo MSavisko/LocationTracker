@@ -7,7 +7,6 @@
 //
 
 #import "LTBaseViewController.h"
-#import <KVOController/NSObject+FBKVOController.h>
 
 @interface LTBaseViewController ()
 
@@ -41,12 +40,10 @@
 
 - (void)initializeKVO
 {
-    __unused FBKVOController *initializedKVO = self.KVOController; //inititialize kvo to prevent crashes when this variable is created in dealloc method
 }
 
 - (void)dealloc
 {
-    [self.KVOController unobserveAll];
 }
 
 #pragma mark - Life Cycle
