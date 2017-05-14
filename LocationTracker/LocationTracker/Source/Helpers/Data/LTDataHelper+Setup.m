@@ -28,9 +28,8 @@ NSString *const LTDataHelperCoreDataPath = @"LocationTracker.sqlite";
 
 + (void)setupAtStoreURL:(nonnull NSURL *)storeUrl completion:(nullable LTDataHelperVoidCompletionBlock)completion
 {
+    [MagicalRecord setLoggingLevel:MagicalRecordLoggingLevelOff];
     [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreAtURL:storeUrl];
-    
-    [MagicalRecord setLoggingLevel:MagicalRecordLoggingLevelAll];
     
     if (completion) {
         completion();

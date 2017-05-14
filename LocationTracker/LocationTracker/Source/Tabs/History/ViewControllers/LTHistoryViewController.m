@@ -19,6 +19,7 @@
 @interface LTHistoryViewController () <NSFetchedResultsControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *placeholderLabel;
+@property (nonatomic, strong) UIBarButtonItem *rightNavigationItem;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
 @end
@@ -37,10 +38,6 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.allowsMultipleSelectionDuringEditing = NO;
-    
-    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Delete", @"v1.0") style:UIBarButtonItemStylePlain target:self action:@selector(deleteAllDidPressed)];
-    [LTThemeHelper customizeDestructiveBarItem:rightButton];
-    [self.navigationItem setRightBarButtonItem:rightButton];
     
     self.placeholderLabel.text = NSLocalizedString(@"No locations yet", @"v1.0");
     [LTThemeHelper customizeLabel:self.placeholderLabel];
@@ -66,6 +63,11 @@
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
+- (void) setBarButton:(UIBarButtonItem *)item animated:(BOOL)animated
+{
+    [self.navigationItem setRightBarButtonItem:item animated:animated];
+}
+
 #pragma mark - Data
 
 - (void) reloadDataForced
@@ -75,6 +77,18 @@
 }
 
 #pragma mark - Properties
+
+- (UIBarButtonItem *) rightNavigationItem
+{
+    if (_rightNavigationItem == nil)
+    {
+        UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Delete", @"v1.0") style:UIBarButtonItemStylePlain target:self action:@selector(deleteAllDidPressed)];
+        [LTThemeHelper customizeDestructiveBarItem:rightButton];
+        _rightNavigationItem = rightButton;
+    }
+    
+    return _rightNavigationItem;
+}
 
 - (NSFetchedResultsController *)fetchedResultsController
 {
@@ -100,10 +114,12 @@
     
     if (numberOfItems == 0)
     {
+        [self setBarButton:nil animated:YES];
         self.placeholderLabel.hidden = NO;
     }
     else
     {
+        [self setBarButton:self.rightNavigationItem animated:YES];
         self.placeholderLabel.hidden = YES;
     }
     
