@@ -77,4 +77,9 @@
     return [self lt_primaryGreenColor];
 }
 
++ (UIColor *)lt_placeholderTextColor
+{
+    return [self lt_primaryBlackColor];
+}
+
 @end

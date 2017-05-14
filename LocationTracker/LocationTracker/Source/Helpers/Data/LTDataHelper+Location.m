@@ -9,6 +9,7 @@
 #import "LTDataHelper+Location.h"
 #import "LTDataHelper+Private.h"
 #import "LTDataHelper+User.h"
+#import "LTDataHelper+Delete.h"
 #import "LocationManagedModel.h"
 
 @implementation LTDataHelper (Location)
@@ -28,6 +29,28 @@
     };
     
     [self saveWithBlock:executionBlock backgroundQueue:YES completion:completion];
+}
+
++ (void) deleteLocationsByIds:(NSArray <NSString *> *)locationIds withCompletion:(LTDataHelperVoidCompletionBlock) completion
+{
+    LTDataHelperExecuteOnContextBlock executionBlock = ^(NSManagedObjectContext *_Nonnull localContext)
+    {
+        NSPredicate *locationsPredicate = [NSPredicate predicateWithFormat:@"%K IN %@", NSStringFromSelector(@selector(dataId)), locationIds];
+        
+        NSArray <LocationManagedModel *> *locations = [LocationManagedModel MR_findAllWithPredicate:locationsPredicate inContext:localContext];
+        
+        [locations enumerateObjectsUsingBlock:^(LocationManagedModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
+        {
+            [obj MR_deleteEntityInContext:localContext];
+        }];
+    };
+    
+    [self saveWithBlock:executionBlock backgroundQueue:YES completion:completion];
+}
+
++ (void) deleteAllLocationsWithCompletion:(nullable LTDataHelperVoidCompletionBlock) completion
+{
+    [self clearEntities:NSStringFromClass([UserManagedModel class]) withPredicate:nil inBackground:YES withCompletion:completion];
 }
 
 @end

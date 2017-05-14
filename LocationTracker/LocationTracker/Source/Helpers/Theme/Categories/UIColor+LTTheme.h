@@ -22,4 +22,6 @@
 + (UIColor *)lt_historyCellTitleColor;
 + (UIColor *)lt_historyCellDateColor;
 
++ (UIColor *)lt_placeholderTextColor;
+
 @end

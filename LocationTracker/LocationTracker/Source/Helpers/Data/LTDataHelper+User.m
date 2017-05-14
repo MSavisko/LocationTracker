@@ -15,6 +15,7 @@
 + (UserManagedModel *)currentUserModelInContext:(NSManagedObjectContext *)context
 {
     UserManagedModel *user = [UserManagedModel MR_findFirstInContext:context];
+    __block BOOL isCreated = NO;
     
     if (!user)
     {
@@ -22,11 +23,12 @@
         {
             UserManagedModel *user = [UserManagedModel MR_createEntityInContext:localContext];
             user.dataId = [NSString lt_uuidString];
+            isCreated = YES;
         }
         backgroundQueue:NO];
     }
     
-    return [UserManagedModel MR_findFirstInContext:context];
+    return isCreated ? [UserManagedModel MR_findFirstInContext:context] : user;
 }
 
 + (UserManagedModel *)currentUserModel

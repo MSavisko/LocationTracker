@@ -41,11 +41,6 @@
     [LTThemeHelper customizeLayoutButton:self.actionButton];
 }
 
-- (void) viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
 - (void) dealloc
 {
     [self.locationTracker removeObserver:self];
@@ -87,6 +82,7 @@
 {
     if (error.code == kCLErrorDenied)
     {
+        [self actionButtonDidPressed:nil];
         [self showSettingsAlert];
     }
 }

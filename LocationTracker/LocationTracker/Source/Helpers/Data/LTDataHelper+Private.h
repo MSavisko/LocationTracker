@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)saveWithBlock:(LTDataHelperExecuteOnContextBlock)executionBlock completion:(nullable LTDataHelperVoidCompletionBlock)completion;
 + (void)saveWithBlock:(LTDataHelperExecuteOnContextBlock)executionBlock backgroundQueue:(BOOL)backgroundQueue completion:(nullable LTDataHelperVoidCompletionBlock)completion;
 
+
+
 @end
 
 

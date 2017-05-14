@@ -111,17 +111,28 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uw8-oL-qLv">
+                                <rect key="frame" x="15" y="323" width="345" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Uw8-oL-qLv" firstAttribute="centerX" secondItem="B9L-0K-Q6X" secondAttribute="centerX" id="Aqv-kg-A5V"/>
+                            <constraint firstItem="Uw8-oL-qLv" firstAttribute="centerY" secondItem="B9L-0K-Q6X" secondAttribute="centerY" id="Bxi-8f-WxX"/>
                             <constraint firstItem="kb8-Hq-Ddb" firstAttribute="leading" secondItem="B9L-0K-Q6X" secondAttribute="leading" id="L0K-J2-cVH"/>
                             <constraint firstAttribute="trailing" secondItem="kb8-Hq-Ddb" secondAttribute="trailing" id="VL4-RI-yye"/>
                             <constraint firstItem="kb8-Hq-Ddb" firstAttribute="top" secondItem="DIB-XH-qra" secondAttribute="bottom" id="cZH-YK-z3P"/>
+                            <constraint firstItem="Uw8-oL-qLv" firstAttribute="leading" secondItem="B9L-0K-Q6X" secondAttribute="leading" constant="15" id="nEF-xI-vSK"/>
                             <constraint firstItem="yMf-vg-isw" firstAttribute="top" secondItem="kb8-Hq-Ddb" secondAttribute="bottom" id="tbW-YN-dHu"/>
+                            <constraint firstAttribute="trailing" secondItem="Uw8-oL-qLv" secondAttribute="trailing" constant="15" id="xDZ-wq-g2t"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="YA7-AH-bzk"/>
                     <connections>
+                        <outlet property="placeholderLabel" destination="Uw8-oL-qLv" id="b1d-he-KnS"/>
                         <outlet property="tableView" destination="kb8-Hq-Ddb" id="NnX-JB-IHo"/>
                     </connections>
                 </viewController>

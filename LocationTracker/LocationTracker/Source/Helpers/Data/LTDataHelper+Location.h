@@ -11,8 +11,16 @@
 
 @class LocationManagedModel, CLLocation;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface LTDataHelper (Location)
 
-+ (void) saveLocations:(NSArray <CLLocation *> *) locations withCompletion:(LTDataHelperVoidCompletionBlock) completion;
++ (void) saveLocations:(NSArray <CLLocation *> *) locations withCompletion:(nullable LTDataHelperVoidCompletionBlock) completion;
+
++ (void) deleteLocationsByIds:(NSArray <NSString *> *)locationIds withCompletion:(nullable LTDataHelperVoidCompletionBlock) completion;
+
++ (void) deleteAllLocationsWithCompletion:(nullable LTDataHelperVoidCompletionBlock) completion;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -30,6 +30,7 @@
 		9230CFEB1EC8BDE20044F6FE /* LTHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9230CFEA1EC8BDE20044F6FE /* LTHistoryCell.m */; };
 		9230CFF11EC8C89F0044F6FE /* NSDate+LTTimeAgo.m in Sources */ = {isa = PBXBuildFile; fileRef = 9230CFF01EC8C89F0044F6FE /* NSDate+LTTimeAgo.m */; };
 		9230CFF41EC8CEB00044F6FE /* NSIndexPath+LTExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 9230CFF31EC8CEB00044F6FE /* NSIndexPath+LTExtension.m */; };
+		9230CFF71EC8E6990044F6FE /* LTDataHelper+Delete.m in Sources */ = {isa = PBXBuildFile; fileRef = 9230CFF61EC8E6990044F6FE /* LTDataHelper+Delete.m */; };
 		9238AF401EC6FFCF006C204E /* LTTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238AF3F1EC6FFCF006C204E /* LTTabBarController.m */; };
 		9238AF421EC70000006C204E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9238AF411EC70000006C204E /* Main.storyboard */; };
 		9238AF471EC700A6006C204E /* History.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9238AF461EC700A6006C204E /* History.storyboard */; };
@@ -97,6 +98,8 @@
 		9230CFF01EC8C89F0044F6FE /* NSDate+LTTimeAgo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+LTTimeAgo.m"; sourceTree = "<group>"; };
 		9230CFF21EC8CEB00044F6FE /* NSIndexPath+LTExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSIndexPath+LTExtension.h"; sourceTree = "<group>"; };
 		9230CFF31EC8CEB00044F6FE /* NSIndexPath+LTExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSIndexPath+LTExtension.m"; sourceTree = "<group>"; };
+		9230CFF51EC8E6990044F6FE /* LTDataHelper+Delete.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LTDataHelper+Delete.h"; sourceTree = "<group>"; };
+		9230CFF61EC8E6990044F6FE /* LTDataHelper+Delete.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LTDataHelper+Delete.m"; sourceTree = "<group>"; };
 		9238AF3E1EC6FFCF006C204E /* LTTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTTabBarController.h; sourceTree = "<group>"; };
 		9238AF3F1EC6FFCF006C204E /* LTTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTTabBarController.m; sourceTree = "<group>"; };
 		9238AF411EC70000006C204E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -231,6 +234,8 @@
 				9230CFB61EC89B360044F6FE /* LTDataHelper.m */,
 				9230CFC31EC89BD10044F6FE /* LTDataHelper+Private.h */,
 				9230CFC41EC89BD10044F6FE /* LTDataHelper+Private.m */,
+				9230CFF51EC8E6990044F6FE /* LTDataHelper+Delete.h */,
+				9230CFF61EC8E6990044F6FE /* LTDataHelper+Delete.m */,
 				9230CFCB1EC8A2680044F6FE /* LTDataHelper+Setup.h */,
 				9230CFCC1EC8A2680044F6FE /* LTDataHelper+Setup.m */,
 				9230CFCE1EC8A3FC0044F6FE /* LTDataHelper+User.h */,
@@ -627,6 +632,7 @@
 				9230CFDF1EC8AB470044F6FE /* NSString+LT.m in Sources */,
 				9238AF651EC71FB6006C204E /* LocationConfiguration.m in Sources */,
 				9238AF5B1EC710C2006C204E /* LTHistoryViewController.m in Sources */,
+				9230CFF71EC8E6990044F6FE /* LTDataHelper+Delete.m in Sources */,
 				9230CFC51EC89BD10044F6FE /* LTDataHelper+Private.m in Sources */,
 				9230CFBF1EC89B360044F6FE /* LTDataHelper.m in Sources */,
 				9238AF581EC70AFB006C204E /* LTLauncherViewController.m in Sources */,

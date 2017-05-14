@@ -86,4 +86,11 @@ static CGFloat const kButtonBorderWidth = 1.0;
                        forState:UIControlStateHighlighted];
 }
 
++ (void)customizeLabel:(__kindof UILabel *) label
+{
+    label.textColor = [UIColor lt_placeholderTextColor];
+    label.font = [UIFont lt_fontWithSize:17 weight:UIFontWeightMedium];
+    
+}
+
 @end

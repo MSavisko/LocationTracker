@@ -10,6 +10,7 @@
 #import "NSIndexPath+LTExtension.h"
 #import "LTHistoryCell.h"
 #import "LTThemeHelper.h"
+#import "LTDataHelper+Location.h"
 
 #import "LocationManagedModel.h"
 #import "NSFetchedResultsController+LocationHistory.h"
@@ -17,6 +18,7 @@
 
 @interface LTHistoryViewController () <NSFetchedResultsControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UILabel *placeholderLabel;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
 @end
@@ -34,17 +36,42 @@
     self.tableView.tableFooterView = [UIView new];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.allowsMultipleSelectionDuringEditing = NO;
     
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Delete", @"v1.0") style:UIBarButtonItemStylePlain target:self action:@selector(deleteAllDidPressed)];
     [LTThemeHelper customizeDestructiveBarItem:rightButton];
     [self.navigationItem setRightBarButtonItem:rightButton];
+    
+    self.placeholderLabel.text = NSLocalizedString(@"No locations yet", @"v1.0");
+    [LTThemeHelper customizeLabel:self.placeholderLabel];
+    self.placeholderLabel.hidden = YES;
 }
 
 #pragma mark - Action Methods
 
 - (void) deleteAllDidPressed
 {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"A you sure?", nil) message:NSLocalizedString(@"All location data will be deleted?", nil) preferredStyle:UIAlertControllerStyleAlert];
     
+    UIAlertAction* setting = [UIAlertAction actionWithTitle:NSLocalizedString(@"Delete All", nil) style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        [LTDataHelper deleteAllLocationsWithCompletion:^{
+            [self reloadDataForced];
+        }];
+    }];
+    [alertController addAction:setting];
+    
+    UIAlertAction* ok = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleDefault handler:nil];
+    [alertController addAction:ok];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
+#pragma mark - Data
+
+- (void) reloadDataForced
+{
+    self.fetchedResultsController = nil;
+    [self.tableView reloadData];
 }
 
 #pragma mark - Properties
@@ -69,6 +96,17 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    NSUInteger numberOfItems = self.fetchedResultsController.fetchedObjects.count;
+    
+    if (numberOfItems == 0)
+    {
+        self.placeholderLabel.hidden = NO;
+    }
+    else
+    {
+        self.placeholderLabel.hidden = YES;
+    }
+    
     return self.fetchedResultsController.fetchedObjects.count;
 }
 
@@ -85,6 +123,15 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return LTHistoryCellDefaultHeight;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        LocationManagedModel *item = self.fetchedResultsController.fetchedObjects[indexPath.row];
+        [LTDataHelper deleteLocationsByIds:@[item.dataId] withCompletion:nil];
+    }
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate Methods
@@ -118,7 +165,6 @@
             }
         }
         case NSFetchedResultsChangeUpdate: {
-
             break;
         }
     }
