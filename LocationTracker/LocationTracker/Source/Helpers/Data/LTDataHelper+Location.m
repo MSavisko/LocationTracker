@@ -14,41 +14,37 @@
 
 @implementation LTDataHelper (Location)
 
-+ (void) saveLocations:(NSArray <CLLocation *> *) locations withCompletion:(LTDataHelperVoidCompletionBlock) completion
++ (void)saveLocations:(NSArray<CLLocation *> *)locations withCompletion:(LTDataHelperVoidCompletionBlock)completion
 {
-    LTDataHelperExecuteOnContextBlock executionBlock = ^(NSManagedObjectContext *_Nonnull localContext)
-    {
+    LTDataHelperExecuteOnContextBlock executionBlock = ^(NSManagedObjectContext *_Nonnull localContext) {
         UserManagedModel *user = [LTDataHelper currentUserModelInContext:localContext];
-        
-        [locations enumerateObjectsUsingBlock:^(CLLocation * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
-        {
+
+        [locations enumerateObjectsUsingBlock:^(CLLocation *_Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
             LocationManagedModel *location = [LocationManagedModel MR_createEntityInContext:localContext];
             [location createWithCoreLocation:obj inContext:localContext];
             [user addLocationHistoryObject:location];
         }];
     };
-    
+
     [self saveWithBlock:executionBlock backgroundQueue:YES completion:completion];
 }
 
-+ (void) deleteLocationsByIds:(NSArray <NSString *> *)locationIds withCompletion:(LTDataHelperVoidCompletionBlock) completion
++ (void)deleteLocationsByIds:(NSArray<NSString *> *)locationIds withCompletion:(LTDataHelperVoidCompletionBlock)completion
 {
-    LTDataHelperExecuteOnContextBlock executionBlock = ^(NSManagedObjectContext *_Nonnull localContext)
-    {
+    LTDataHelperExecuteOnContextBlock executionBlock = ^(NSManagedObjectContext *_Nonnull localContext) {
         NSPredicate *locationsPredicate = [NSPredicate predicateWithFormat:@"%K IN %@", NSStringFromSelector(@selector(dataId)), locationIds];
-        
-        NSArray <LocationManagedModel *> *locations = [LocationManagedModel MR_findAllWithPredicate:locationsPredicate inContext:localContext];
-        
-        [locations enumerateObjectsUsingBlock:^(LocationManagedModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
-        {
+
+        NSArray<LocationManagedModel *> *locations = [LocationManagedModel MR_findAllWithPredicate:locationsPredicate inContext:localContext];
+
+        [locations enumerateObjectsUsingBlock:^(LocationManagedModel *_Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
             [obj MR_deleteEntityInContext:localContext];
         }];
     };
-    
+
     [self saveWithBlock:executionBlock backgroundQueue:YES completion:completion];
 }
 
-+ (void) deleteAllLocationsWithCompletion:(nullable LTDataHelperVoidCompletionBlock) completion
++ (void)deleteAllLocationsWithCompletion:(nullable LTDataHelperVoidCompletionBlock)completion
 {
     [self clearEntities:NSStringFromClass([UserManagedModel class]) withPredicate:nil inBackground:YES withCompletion:completion];
 }

@@ -30,7 +30,7 @@ NSString *const LTDataHelperCoreDataPath = @"LocationTracker.sqlite";
 {
     [MagicalRecord setLoggingLevel:MagicalRecordLoggingLevelOff];
     [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreAtURL:storeUrl];
-    
+
     if (completion) {
         completion();
     }
@@ -41,7 +41,7 @@ NSString *const LTDataHelperCoreDataPath = @"LocationTracker.sqlite";
 + (NSURL *)applicationDatabaseURL
 {
     NSURL *documentsDirURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-    
+
     return [documentsDirURL URLByAppendingPathComponent:LTDataHelperCoreDataPath];
 }
 

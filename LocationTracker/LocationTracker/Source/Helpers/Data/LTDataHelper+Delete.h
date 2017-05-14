@@ -13,7 +13,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-+(void) clearEntities:(NSString *) entityName withPredicate:(nullable NSPredicate *) predicate inBackground:(BOOL) background withCompletion:(nullable LTDataHelperVoidCompletionBlock)completion;
++ (void)clearEntities:(NSString *)entityName withPredicate:(nullable NSPredicate *)predicate inBackground:(BOOL)background withCompletion:(nullable LTDataHelperVoidCompletionBlock)completion;
 
 @end
 

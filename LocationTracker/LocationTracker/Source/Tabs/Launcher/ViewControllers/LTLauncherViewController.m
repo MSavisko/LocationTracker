@@ -1,4 +1,4 @@
-    //
+//
 //  LTLauncherViewController.m
 //  LocationTracker
 //
@@ -24,13 +24,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     self.title = NSLocalizedString(@"Launcher", @"v1.0");
     self.navigationController.tabBarItem.title = NSLocalizedString(@"Launcher", @"v1.0");
-    
+
     [self.actionButton setTitle:NSLocalizedString(@"Start tracking", @"v1.0") forState:UIControlStateNormal];
     [LTThemeHelper customizeButton:self.actionButton];
-    
+
     self.locationTracker = [LocationTracker defaultTracker];
     [self.locationTracker addObserver:self];
 }
@@ -41,7 +41,7 @@
     [LTThemeHelper customizeLayoutButton:self.actionButton];
 }
 
-- (void) dealloc
+- (void)dealloc
 {
     [self.locationTracker removeObserver:self];
 }
@@ -50,19 +50,13 @@
 
 - (IBAction)actionButtonDidPressed:(id)sender
 {
-    if (self.locationTracker.isStarted)
-    {
+    if (self.locationTracker.isStarted) {
         [self.locationTracker stop];
         [self.actionButton setTitle:NSLocalizedString(@"Start tracking", @"v1.0") forState:UIControlStateNormal];
-    }
-    else
-    {
-        if ([LocationTracker isLocationServiceRequested] && ![LocationTracker isServiceEnabled])
-        {
+    } else {
+        if ([LocationTracker isLocationServiceRequested] && ![LocationTracker isServiceEnabled]) {
             [self showSettingsAlert];
-        }
-        else
-        {
+        } else {
             [self.locationTracker start];
             [self.actionButton setTitle:NSLocalizedString(@"Stop tracking", @"v1.0") forState:UIControlStateNormal];
         }
@@ -73,13 +67,12 @@
 
 - (void)onLocationUpdate:(CLLocation *)location
 {
-    [LTDataHelper saveLocations:@[location] withCompletion:nil];
+    [LTDataHelper saveLocations:@[ location ] withCompletion:nil];
 }
 
-- (void)onLocationError:(NSError *) error
+- (void)onLocationError:(NSError *)error
 {
-    if (error.code == kCLErrorDenied)
-    {
+    if (error.code == kCLErrorDenied) {
         [self actionButtonDidPressed:nil];
         [self showSettingsAlert];
     }
@@ -87,19 +80,21 @@
 
 #pragma mark - Alets
 
-- (void) showSettingsAlert
+- (void)showSettingsAlert
 {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:NSLocalizedString(@"Please, enable location service", nil) preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction* setting = [UIAlertAction actionWithTitle:NSLocalizedString(@"Settings", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-        [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
-    }];
+
+    UIAlertAction *setting = [UIAlertAction actionWithTitle:NSLocalizedString(@"Settings", nil)
+                                                      style:UIAlertActionStyleDefault
+                                                    handler:^(UIAlertAction *_Nonnull action) {
+                                                        NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+                                                        [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+                                                    }];
     [alertController addAction:setting];
-    
-    UIAlertAction* ok = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleDefault handler:nil];
+
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleDefault handler:nil];
     [alertController addAction:ok];
-    
+
     [self presentViewController:alertController animated:YES completion:nil];
 }
 

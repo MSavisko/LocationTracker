@@ -12,60 +12,50 @@
 
 @implementation LTDataHelper (Delete)
 
-+ (void) clearEntities:(NSString *) entityName withPredicate:(nullable NSPredicate *) predicate inBackground:(BOOL) background withCompletion:(nullable LTDataHelperVoidCompletionBlock)completion
++ (void)clearEntities:(NSString *)entityName withPredicate:(nullable NSPredicate *)predicate inBackground:(BOOL)background withCompletion:(nullable LTDataHelperVoidCompletionBlock)completion
 {
     NSManagedObjectContext *_context = [self mainContext];
-    
+
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:entityName];
     [request setIncludesSubentities:NO];
-    
+
     if (predicate) {
         [request setPredicate:predicate];
     }
-    
+
     NSBatchDeleteRequest *delete = [[NSBatchDeleteRequest alloc] initWithFetchRequest:request];
-    
+
     delete.resultType = NSBatchDeleteResultTypeCount;
-    
+
     LTDataHelperVoidCompletionBlock executeBlock = ^{
         NSError *error = nil;
         NSBatchDeleteResult *result = [_context executeRequest:delete error:&error];
-        if (result)
-        {
+        if (result) {
             //
         }
-        
-        if (background)
-        {
-            [_context MR_saveToPersistentStoreWithCompletion:^(BOOL contextDidSave, NSError * _Nullable error)
-            {
-                if (completion)
-                {
+
+        if (background) {
+            [_context MR_saveToPersistentStoreWithCompletion:^(BOOL contextDidSave, NSError *_Nullable error) {
+                if (completion) {
                     dispatch_async(dispatch_get_main_queue(), ^{
                         completion();
                     });
                 }
             }];
-        }
-        else
-        {
+        } else {
             [_context MR_saveToPersistentStoreAndWait];
-            if (completion)
-            {
+            if (completion) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     completion();
                 });
             }
         }
     };
-    
-    if (background)
-    {
+
+    if (background) {
         dispatch_async([LTQueueHelper backgroundConcurrentQueue], executeBlock);
-    }
-    else
-    {
-        executeBlock ();
+    } else {
+        executeBlock();
     }
 }
 

@@ -13,8 +13,8 @@
 + (UIFont *)lt_fontWithSize:(CGFloat)pointSize weight:(CGFloat)weight;
 + (UIFont *)lt_regularFontWithWeight:(CGFloat)weight;
 
-+ (UIFont *)lt_tabBarFontWithWeight:(CGFloat) weight;
-+ (UIFont *)lt_navigationBartTitleFontWithWeight:(CGFloat) weight;
-+ (UIFont *)lt_actionButtonFontWithWeight:(CGFloat) weight;
++ (UIFont *)lt_tabBarFontWithWeight:(CGFloat)weight;
++ (UIFont *)lt_navigationBartTitleFontWithWeight:(CGFloat)weight;
++ (UIFont *)lt_actionButtonFontWithWeight:(CGFloat)weight;
 
 @end

@@ -17,11 +17,11 @@
 
 #pragma mark - Life Cycle
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [LTThemeHelper customizeNavigationBar:self.navigationBar];
 }
-
 
 
 @end

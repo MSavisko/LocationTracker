@@ -20,8 +20,7 @@ extern CGFloat const LTHistoryCellDefaultHeight;
 @property (weak, nonatomic) IBOutlet UILabel *longitudeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
-
-- (void) addLocation:(LocationManagedModel *) location;
+- (void)addLocation:(LocationManagedModel *)location;
 
 @end
 

@@ -10,9 +10,8 @@
 
 @implementation NSManagedObject (LTCommon)
 
-- (void) createWithInfo:(NSDictionary *) info inContext:(NSManagedObjectContext *) context
+- (void)createWithInfo:(NSDictionary *)info inContext:(NSManagedObjectContext *)context
 {
-    
 }
 
 @end

@@ -31,7 +31,7 @@
     return [self lt_fontWithSize:17 weight:weight];
 }
 
-+ (UIFont *)lt_actionButtonFontWithWeight:(CGFloat) weight
++ (UIFont *)lt_actionButtonFontWithWeight:(CGFloat)weight
 {
     return [self lt_fontWithSize:17 weight:weight];
 }

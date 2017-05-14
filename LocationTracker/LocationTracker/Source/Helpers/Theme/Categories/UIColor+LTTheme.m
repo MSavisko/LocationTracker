@@ -32,7 +32,7 @@
     return [UIColor colorWithRed:152.f / 255.f green:149.f / 255.f blue:143.f / 255.f alpha:1.0];
 }
 
-#pragma mark - 
+#pragma mark -
 
 + (UIColor *)lt_tabBarItemColor
 {

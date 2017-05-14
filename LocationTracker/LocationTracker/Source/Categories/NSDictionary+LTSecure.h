@@ -12,13 +12,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSDictionary (LTSecure)
 
-- (nullable id) lt_getSecureValueForKey:(NSString *) key withClass:(Class) keyClass andDefaulValue:(nullable id) defaultValue;
+- (nullable id)lt_getSecureValueForKey:(NSString *)key withClass:(Class)keyClass andDefaulValue:(nullable id)defaultValue;
 
-- (nullable NSString *) lt_getSecureStringForKey:(NSString *) key defaultString:(nullable NSString *) defaultString;
+- (nullable NSString *)lt_getSecureStringForKey:(NSString *)key defaultString:(nullable NSString *)defaultString;
 
-- (nullable NSDate *) lt_getSecureDateForKey:(NSString *) key defaultDate:(nullable NSDate *) defaultDate;
+- (nullable NSDate *)lt_getSecureDateForKey:(NSString *)key defaultDate:(nullable NSDate *)defaultDate;
 
-- (nullable NSNumber *) lt_getSecureNumberForKey:(NSString *) key defaultNumber:(nullable NSNumber *) defaultNumber;
+- (nullable NSNumber *)lt_getSecureNumberForKey:(NSString *)key defaultNumber:(nullable NSNumber *)defaultNumber;
 
 @end
 

@@ -28,12 +28,11 @@ static NSInteger const kInitialViewControllerIndex = 0;
 
 #pragma mark - Setup Methods
 
-- (void) setInitalViewControllerIndex:(NSUInteger) index
+- (void)setInitalViewControllerIndex:(NSUInteger)index
 {
     [self.viewControllers enumerateObjectsUsingBlock:^(__kindof UIViewController *_Nonnull obj, NSUInteger controllerIdx, BOOL *_Nonnull stop) {
-        
-        if (controllerIdx == index)
-        {
+
+        if (controllerIdx == index) {
             self.selectedIndex = controllerIdx;
         }
     }];

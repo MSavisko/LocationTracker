@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (UserManagedModel *)currentUserModelInContext:(NSManagedObjectContext *)context;
 
-+ (UserManagedModel *)currentUserModel;;
++ (UserManagedModel *)currentUserModel;
 
 @end
 

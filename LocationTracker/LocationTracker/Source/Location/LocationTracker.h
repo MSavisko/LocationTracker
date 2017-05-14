@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @optional
 - (void)onLocationUpdate:(CLLocation *)location;
-- (void)onLocationError:(NSError *) error;
+- (void)onLocationError:(NSError *)error;
 @end
 
 @interface LocationTracker : NSObject
@@ -30,19 +30,19 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, readonly) LocationConfiguration *configuration;
 @property (nonatomic, readonly) BOOL isStarted;
 
-+ (nullable instancetype) defaultTracker;
-+ (nullable instancetype) trackerWithConfiguration:(LocationConfiguration *) configuration;
++ (nullable instancetype)defaultTracker;
++ (nullable instancetype)trackerWithConfiguration:(LocationConfiguration *)configuration;
 
-+ (BOOL) isLocationServiceRequested;
-+ (BOOL) isServiceEnabled;
++ (BOOL)isLocationServiceRequested;
++ (BOOL)isServiceEnabled;
 
 - (void)start;
 - (void)stop;
 
-- (nullable CLLocation *) lastLocation;
+- (nullable CLLocation *)lastLocation;
 
-- (void)addObserver:(id <LocationTrackerObserver>)observer;
-- (void)removeObserver:(id <LocationTrackerObserver>)observer;
+- (void)addObserver:(id<LocationTrackerObserver>)observer;
+- (void)removeObserver:(id<LocationTrackerObserver>)observer;
 
 @end
 

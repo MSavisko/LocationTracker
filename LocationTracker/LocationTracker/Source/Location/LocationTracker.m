@@ -18,7 +18,7 @@
 
 @property (nonatomic) NSDate *lastLocationTime;
 
-@property (nonatomic) NSMutableSet <id <LocationTrackerObserver>> *observers;
+@property (nonatomic) NSMutableSet<id<LocationTrackerObserver>> *observers;
 @property (nonatomic, strong) NSSortDescriptor *timeStamplocationDescriptor;
 
 @end
@@ -27,62 +27,59 @@
 
 #pragma mark - Initialization Methods
 
-+ (nullable instancetype) defaultTracker
++ (nullable instancetype)defaultTracker
 {
     return [self trackerWithConfiguration:[LocationConfiguration defaultConfiguration]];
 }
 
-+ (nullable instancetype) trackerWithConfiguration:(nonnull LocationConfiguration *) configuration
++ (nullable instancetype)trackerWithConfiguration:(nonnull LocationConfiguration *)configuration
 {
     return [[self alloc] initWithConfiguration:configuration];
 }
 
-- (nullable instancetype) initWithConfiguration:(nonnull LocationConfiguration *) configuration
+- (nullable instancetype)initWithConfiguration:(nonnull LocationConfiguration *)configuration
 {
     self = [super init];
-    
-    if (self)
-    {
+
+    if (self) {
         [self initLocationManager];
         [self initTimerLocationManager];
         [self initObservers];
         _configuration = configuration;
     }
-    
+
     return self;
 }
 
-- (void) initLocationManager
+- (void)initLocationManager
 {
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
 }
 
-- (void) initTimerLocationManager
+- (void)initTimerLocationManager
 {
     self.locationTimerManager = [[CLLocationManager alloc] init];
     self.locationTimerManager.delegate = self;
 }
 
-- (void) initObservers
+- (void)initObservers
 {
     self.observers = [NSMutableSet set];
 }
 
 #pragma mark - Public Methods
 
-+ (BOOL) isLocationServiceRequested
++ (BOOL)isLocationServiceRequested
 {
     return ([CLLocationManager authorizationStatus] != kCLAuthorizationStatusNotDetermined);
 }
 
-+ (BOOL) isServiceEnabled
++ (BOOL)isServiceEnabled
 {
-    if ([CLLocationManager locationServicesEnabled])
-    {
+    if ([CLLocationManager locationServicesEnabled]) {
         CLAuthorizationStatus const authStatus = [CLLocationManager authorizationStatus];
-        switch (authStatus)
-        {
+        switch (authStatus) {
             case kCLAuthorizationStatusAuthorizedWhenInUse:
             case kCLAuthorizationStatusAuthorizedAlways:
             case kCLAuthorizationStatusNotDetermined:
@@ -94,16 +91,14 @@
                 break;
         }
     }
-    
+
     return NO;
 }
 
 - (void)start
 {
-    if (!_isStarted)
-    {
-        if ([self.class isServiceEnabled])
-        {
+    if (!_isStarted) {
+        if ([self.class isServiceEnabled]) {
             [self updateConfiguration:_configuration];
             [self.locationManager requestAlwaysAuthorization];
             [self.locationManager startUpdatingLocation];
@@ -120,63 +115,51 @@
     _isStarted = NO;
 }
 
-- (nullable CLLocation *) lastLocation
+- (nullable CLLocation *)lastLocation
 {
     CLLocation *distanceLocation = self.locationManager.location;
     CLLocation *timerLocation = self.locationTimerManager.location;
-    
-    if (!distanceLocation && !timerLocation)
-    {
+
+    if (!distanceLocation && !timerLocation) {
         return nil;
-    }
-    else if (!distanceLocation && timerLocation)
-    {
+    } else if (!distanceLocation && timerLocation) {
         return timerLocation;
-    }
-    else if (distanceLocation && !timerLocation)
-    {
+    } else if (distanceLocation && !timerLocation) {
         return distanceLocation;
     }
-    
-    if (distanceLocation.horizontalAccuracy < 0. && timerLocation.horizontalAccuracy < 0.)
-    {
+
+    if (distanceLocation.horizontalAccuracy < 0. && timerLocation.horizontalAccuracy < 0.) {
         return nil;
     }
-    
+
     NSComparisonResult dateCompare = [distanceLocation.timestamp compare:timerLocation.timestamp];
-    
-    if (dateCompare == NSOrderedSame && dateCompare == NSOrderedDescending)
-    {
+
+    if (dateCompare == NSOrderedSame && dateCompare == NSOrderedDescending) {
         return distanceLocation;
-    }
-    else
-    {
+    } else {
         return timerLocation;
     }
 }
 
 #pragma mark - LocationTrackerObserver Methods
 
-- (void) addObserver:(id <LocationTrackerObserver>)observer
+- (void)addObserver:(id<LocationTrackerObserver>)observer
 {
-    if ([self.class isServiceEnabled])
-    {
+    if ([self.class isServiceEnabled]) {
         [self.observers addObject:observer];
-    }
-    else
-    {
+    } else {
         [self observer:observer onLocationError:[NSError lt_errorWithCode:kCLErrorDenied]];
     }
 }
 
--(void) removeObserver:(id <LocationTrackerObserver>)observer {
+- (void)removeObserver:(id<LocationTrackerObserver>)observer
+{
     [self.observers removeObject:observer];
 }
 
-- (void)observer:(id<LocationTrackerObserver>)observer onLocationError:(NSError *) error
+- (void)observer:(id<LocationTrackerObserver>)observer onLocationError:(NSError *)error
 {
-    if ([(NSObject *)observer respondsToSelector:@selector(onLocationError:)])
-    {
+    if ([(NSObject *)observer respondsToSelector:@selector(onLocationError:)]) {
         [observer onLocationError:error];
     }
 }
@@ -196,39 +179,34 @@
 
 #pragma mark - Properties
 
-- (NSSortDescriptor *) timeStamplocationDescriptor
+- (NSSortDescriptor *)timeStamplocationDescriptor
 {
-    if (_timeStamplocationDescriptor == nil)
-    {
+    if (_timeStamplocationDescriptor == nil) {
         NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:NSStringFromSelector(@selector(timestamp))
                                                                        ascending:NO];
         _timeStamplocationDescriptor = sortDescriptor;
     }
-    
+
     return _timeStamplocationDescriptor;
 }
 
 #pragma mark - Configuration Methods
 
-- (void) updateConfiguration:(nonnull LocationConfiguration *) configuration
+- (void)updateConfiguration:(nonnull LocationConfiguration *)configuration
 {
     self.locationManager.desiredAccuracy = configuration.desiredAccuracy;
     self.locationManager.distanceFilter = configuration.distanceFilter;
-    
+
     self.locationTimerManager.desiredAccuracy = configuration.desiredAccuracy;
     self.locationTimerManager.distanceFilter = kCLDistanceFilterNone;
-    
-    if (configuration.allowTimeFilter)
-    {
+
+    if (configuration.allowTimeFilter) {
         [self startScheduleTimerWithInterval:configuration.timeFilter];
-    }
-    else
-    {
+    } else {
         [self stopScheduleTimer];
     }
-    
-    if ([self.locationManager respondsToSelector:@selector(setAllowsBackgroundLocationUpdates:)])
-    {
+
+    if ([self.locationManager respondsToSelector:@selector(setAllowsBackgroundLocationUpdates:)]) {
         self.locationManager.allowsBackgroundLocationUpdates = configuration.allowBackgroundUpdates;
         self.locationTimerManager.allowsBackgroundLocationUpdates = configuration.allowBackgroundUpdates;
     }
@@ -238,34 +216,29 @@
 
 - (void)processLocation:(CLLocation *)location
 {
-    if (location.horizontalAccuracy < 0.)
-    {
+    if (location.horizontalAccuracy < 0.) {
         return;
     }
-    
+
     self.lastLocationTime = [NSDate date];
-    
-    for (id observer in self.observers.copy)
-    {
+
+    for (id observer in self.observers.copy) {
         [observer onLocationUpdate:location];
     }
 }
 
-- (void)processLocationError:(NSError *) error
+- (void)processLocationError:(NSError *)error
 {
-    if (![self isLocationUnknownError:error])
-    {
-        for (id observer in self.observers.copy)
-        {
+    if (![self isLocationUnknownError:error]) {
+        for (id observer in self.observers.copy) {
             [observer onLocationError:[NSError lt_errorWithCode:error.code]];
         }
     }
 }
 
-- (void) quickRequestLocation
+- (void)quickRequestLocation
 {
-    if (self.isStarted)
-    {
+    if (self.isStarted) {
         [self.locationTimerManager requestAlwaysAuthorization];
         [self.locationTimerManager requestLocation];
     }
@@ -273,37 +246,36 @@
 
 #pragma mark - Private Timer Methods
 
-- (void) stopScheduleTimer
+- (void)stopScheduleTimer
 {
     [self.scheduleTimer invalidate];
     self.scheduleTimer = nil;
 }
 
-- (void) startScheduleTimerWithInterval:(NSTimeInterval)timeInterval
+- (void)startScheduleTimerWithInterval:(NSTimeInterval)timeInterval
 {
     [self stopScheduleTimer];
-    
+
     self.scheduleTimer = [NSTimer timerWithTimeInterval:timeInterval target:self selector:@selector(quickRequestLocation) userInfo:nil repeats:YES];
-    
+
     [[NSRunLoop currentRunLoop] addTimer:self.scheduleTimer forMode:NSRunLoopCommonModes];
 }
 
 #pragma mark - Private Helpers Methods
 
-- (BOOL) isLocationUnknownError:(NSError *) error
+- (BOOL)isLocationUnknownError:(NSError *)error
 {
     return (error.code == kCLErrorLocationUnknown);
 }
 
-- (CLLocation *) latestLocationFromList:(NSArray<CLLocation *> *)locationsList
+- (CLLocation *)latestLocationFromList:(NSArray<CLLocation *> *)locationsList
 {
-    return [self sortLocations:locationsList bySortDescriptors:@[self.timeStamplocationDescriptor]].firstObject;
+    return [self sortLocations:locationsList bySortDescriptors:@[ self.timeStamplocationDescriptor ]].firstObject;
 }
 
-- (NSArray <CLLocation *> *) sortLocations:(NSArray <CLLocation *> *)locations bySortDescriptors:(NSArray <NSSortDescriptor *> *) descriptors
+- (NSArray<CLLocation *> *)sortLocations:(NSArray<CLLocation *> *)locations bySortDescriptors:(NSArray<NSSortDescriptor *> *)descriptors
 {
     return [locations sortedArrayUsingDescriptors:descriptors];
 }
-
 
 @end

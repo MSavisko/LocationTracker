@@ -12,11 +12,10 @@
 
 - (BOOL)lt_isEqualToIndexPath:(NSIndexPath *)indexPath
 {
-    if ( !indexPath )
-    {
+    if (!indexPath) {
         return NO;
     }
-    
+
     return self.section == indexPath.section && self.row == indexPath.row;
 }
 

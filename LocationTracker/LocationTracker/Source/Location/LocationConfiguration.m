@@ -18,7 +18,7 @@ static BOOL const kDefaultConfigurationTimeFilterAllowances = YES;
 
 #pragma mark - Public
 
-+ (instancetype) defaultConfiguration
++ (instancetype)defaultConfiguration
 {
     LocationConfiguration *configuration = [[LocationConfiguration alloc] init];
     configuration.timeFilter = kDefaultConfigurationTimeFilter;
@@ -31,19 +31,18 @@ static BOOL const kDefaultConfigurationTimeFilterAllowances = YES;
 
 #pragma mark - Initialization
 
-- (instancetype) init
+- (instancetype)init
 {
     self = [super init];
-    
-    if (self)
-    {
+
+    if (self) {
         _timeFilter = 0;
         _distanceFilter = 0;
         _allowBackgroundUpdates = NO;
         _desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
         _allowTimeFilter = NO;
     }
-    
+
     return self;
 }
 

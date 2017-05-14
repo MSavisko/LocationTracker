@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol LTCommonManagedModelProtocol <NSObject>
 
-- (void) createWithInfo:(nullable NSDictionary *) info inContext:(NSManagedObjectContext *) context;
+- (void)createWithInfo:(nullable NSDictionary *)info inContext:(NSManagedObjectContext *)context;
 
 @end
 

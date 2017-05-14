@@ -15,10 +15,10 @@
 + (nullable instancetype)lt_allLocationHistoryFetchedResultsControllerDelegate:(nullable id<NSFetchedResultsControllerDelegate>)delegate
 {
     NSFetchRequest *fetchRequest = [LocationManagedModel MR_requestAllSortedBy:NSStringFromSelector(@selector(locationDate)) ascending:NO inContext:[LTDataHelper mainContext]];
-    
-    
+
+
     NSFetchedResultsController *fetchController = [LocationManagedModel MR_fetchController:fetchRequest delegate:delegate useFileCache:NO groupedBy:nil inContext:[LTDataHelper mainContext]];
-    
+
     return fetchController;
 }
 

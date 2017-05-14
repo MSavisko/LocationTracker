@@ -1,6 +1,6 @@
 //
 //  UserManagedModel+CoreDataProperties.h
-//  
+//
 //
 //  Created by Maksym Savisko on 5/14/17.
 //

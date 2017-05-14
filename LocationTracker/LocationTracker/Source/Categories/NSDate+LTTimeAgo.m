@@ -15,13 +15,13 @@
     static dispatch_once_t pred;
     static id _timeAgoDateFormatter = nil;
     dispatch_once(&pred, ^{
-        
+
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         formatter.locale = [NSLocale currentLocale];
         [formatter setDateFormat:@"HH:mm dd.MM"];
         _timeAgoDateFormatter = formatter;
     });
-    
+
     return _timeAgoDateFormatter;
 }
 @end

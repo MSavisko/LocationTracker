@@ -10,7 +10,7 @@
 
 @implementation LTDataHelper (Private)
 
-+ (NSManagedObjectContext *) mainContext
++ (NSManagedObjectContext *)mainContext
 {
     return [NSManagedObjectContext MR_defaultContext];
 }
@@ -33,30 +33,28 @@
 + (void)saveWithBlock:(LTDataHelperExecuteOnContextBlock)executionBlock backgroundQueue:(BOOL)backgroundQueue completion:(nullable LTDataHelperVoidCompletionBlock)completion
 {
     LTDataHelperVoidCompletionBlock backgroundExecuteBlock = ^{
-        
-        [MagicalRecord saveWithBlock:executionBlock completion:^(BOOL contextDidSave, NSError * _Nullable error)
-         {
-             if (completion)
-             {
-                 dispatch_async(dispatch_get_main_queue(), ^{
-                     completion();
-                 });
-             }
-         }];
+
+        [MagicalRecord saveWithBlock:executionBlock
+                          completion:^(BOOL contextDidSave, NSError *_Nullable error) {
+                              if (completion) {
+                                  dispatch_async(dispatch_get_main_queue(), ^{
+                                      completion();
+                                  });
+                              }
+                          }];
     };
-    
+
     LTDataHelperVoidCompletionBlock executeBlock = ^{
-        
+
         [MagicalRecord saveWithBlockAndWait:executionBlock];
-        
-        if (completion)
-        {
+
+        if (completion) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 completion();
             });
         }
     };
-    
+
     if (backgroundQueue) {
         dispatch_async([LTQueueHelper backgroundConcurrentQueue], backgroundExecuteBlock);
     } else {

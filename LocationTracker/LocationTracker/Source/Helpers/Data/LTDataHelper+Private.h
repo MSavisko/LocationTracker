@@ -15,12 +15,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LTDataHelper (Private)
 
-+ (NSManagedObjectContext *) mainContext;
++ (NSManagedObjectContext *)mainContext;
 + (void)saveWithBlock:(LTDataHelperExecuteOnContextBlock)executionBlock;
 + (void)saveWithBlock:(LTDataHelperExecuteOnContextBlock)executionBlock backgroundQueue:(BOOL)backgroundQueue;
 + (void)saveWithBlock:(LTDataHelperExecuteOnContextBlock)executionBlock completion:(nullable LTDataHelperVoidCompletionBlock)completion;
 + (void)saveWithBlock:(LTDataHelperExecuteOnContextBlock)executionBlock backgroundQueue:(BOOL)backgroundQueue completion:(nullable LTDataHelperVoidCompletionBlock)completion;
-
 
 
 @end

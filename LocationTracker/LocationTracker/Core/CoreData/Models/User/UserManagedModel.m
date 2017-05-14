@@ -12,7 +12,7 @@
 
 @implementation UserManagedModel
 
-- (void) createWithInfo:(NSDictionary *) info inContext:(NSManagedObjectContext *) context
+- (void)createWithInfo:(NSDictionary *)info inContext:(NSManagedObjectContext *)context
 {
     self.dataId = [info lt_getSecureStringForKey:UserDataIdKey defaultString:[NSString lt_uuidString]];
 }

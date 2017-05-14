@@ -1,6 +1,6 @@
 //
 //  UserManagedModel+CoreDataProperties.m
-//  
+//
 //
 //  Created by Maksym Savisko on 5/14/17.
 //
@@ -10,8 +10,9 @@
 
 @implementation UserManagedModel (CoreDataProperties)
 
-+ (NSFetchRequest<UserManagedModel *> *)fetchRequest {
-	return [[NSFetchRequest alloc] initWithEntityName:@"UserManagedModel"];
++ (NSFetchRequest<UserManagedModel *> *)fetchRequest
+{
+    return [[NSFetchRequest alloc] initWithEntityName:@"UserManagedModel"];
 }
 
 @dynamic dataId;

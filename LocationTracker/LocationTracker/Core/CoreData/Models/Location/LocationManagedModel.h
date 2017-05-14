@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LocationManagedModel : NSManagedObject
 
-- (void) createWithCoreLocation:(CLLocation *) coreLocation inContext:(NSManagedObjectContext *) context;
+- (void)createWithCoreLocation:(CLLocation *)coreLocation inContext:(NSManagedObjectContext *)context;
 
 @end
 

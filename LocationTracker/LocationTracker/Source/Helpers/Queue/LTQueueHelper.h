@@ -10,6 +10,6 @@
 
 @interface LTQueueHelper : NSObject
 
-+ (dispatch_queue_t) backgroundConcurrentQueue;
++ (dispatch_queue_t)backgroundConcurrentQueue;
 
 @end

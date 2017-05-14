@@ -10,6 +10,6 @@
 
 @interface NSString (LT)
 
-+ (nonnull instancetype) lt_uuidString;
++ (nonnull instancetype)lt_uuidString;
 
 @end

@@ -17,7 +17,7 @@
 
 #pragma mark - Public Methods
 
-- (void) createWithCoreLocation:(CLLocation *) coreLocation inContext:(NSManagedObjectContext *) context
+- (void)createWithCoreLocation:(CLLocation *)coreLocation inContext:(NSManagedObjectContext *)context
 {
     self.dataId = [NSString lt_uuidString];
     self.createDate = [NSDate date];
@@ -28,7 +28,7 @@
 
 #pragma mark - LTCommonManagedModelProtocol Methods
 
-- (void) createWithInfo:(NSDictionary *) info inContext:(NSManagedObjectContext *) context
+- (void)createWithInfo:(NSDictionary *)info inContext:(NSManagedObjectContext *)context
 {
     self.dataId = [info lt_getSecureStringForKey:LocationDataIdKey defaultString:[NSString lt_uuidString]];
     self.createDate = [info lt_getSecureDateForKey:LocationCreateDateKey defaultDate:[NSDate date]];
