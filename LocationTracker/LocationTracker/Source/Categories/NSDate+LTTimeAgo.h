@@ -10,6 +10,7 @@
 
 @interface NSDate (LTTimeAgo)
 
++ (NSDateFormatter *)lt_dateFormatter;
 - (NSString *)lt_formattedAsTimeAgo;
 
 @end

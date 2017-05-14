@@ -9,6 +9,7 @@
 #import "LTHistoryViewController.h"
 #import "NSIndexPath+LTExtension.h"
 #import "LTHistoryCell.h"
+#import "LTThemeHelper.h"
 
 #import "LocationManagedModel.h"
 #import "NSFetchedResultsController+LocationHistory.h"
@@ -35,6 +36,7 @@
     self.tableView.dataSource = self;
     
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Delete", @"v1.0") style:UIBarButtonItemStylePlain target:self action:@selector(deleteAllDidPressed)];
+    [LTThemeHelper customizeDestructiveBarItem:rightButton];
     [self.navigationItem setRightBarButtonItem:rightButton];
 }
 

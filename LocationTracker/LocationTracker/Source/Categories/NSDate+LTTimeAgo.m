@@ -18,15 +18,15 @@
 
 @implementation NSDate (LTTimeAgo)
 
-+ (NSDateFormatter *)timeAgoDateFormatter
++ (NSDateFormatter *)lt_dateFormatter
 {
     static dispatch_once_t pred;
     static id _timeAgoDateFormatter = nil;
     dispatch_once(&pred, ^{
         
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setTimeStyle:NO];
-        [formatter setDateStyle:NSDateFormatterShortStyle];
+        formatter.locale = [NSLocale currentLocale];
+        [formatter setDateFormat:@"HH:mm dd.MM"];
         _timeAgoDateFormatter = formatter;
     });
     
@@ -35,7 +35,6 @@
 
 - (NSString *)lt_formattedAsTimeAgo
 {
-    
     NSDate *now = [NSDate date];
     NSTimeInterval secondsSince = -(int)[self timeIntervalSinceDate:now];
     
@@ -55,7 +54,7 @@
         return [NSString stringWithFormat:@"%d %@", hoursSince, NSLocalizedString(@"h", @"v1.0")];
     }
     
-    return [[self.class timeAgoDateFormatter] stringFromDate:self];
+    return [[self.class lt_dateFormatter] stringFromDate:self];
 }
 
 @end

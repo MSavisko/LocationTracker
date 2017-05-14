@@ -16,6 +16,11 @@ NSString *const LTDataHelperCoreDataPath = @"LocationTracker.sqlite";
 
 #pragma mark - Public Methods
 
++ (void)setupCoreData
+{
+    [self setupWithCompletion:nil];
+}
+
 + (void)setupWithCompletion:(LTDataHelperVoidCompletionBlock)completion
 {
     [self setupAtStoreURL:[self applicationDatabaseURL] completion:completion];

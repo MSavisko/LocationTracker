@@ -16,5 +16,6 @@
 + (void)customizeButton:(__kindof UIButton *) button;
 + (void)customizeLayoutButton:(__kindof UIButton *) button;
 + (void)customizeCell:(__kindof UITableViewCell *) cell;
++ (void)customizeDestructiveBarItem:(__kindof UIBarItem *) item;
 
 @end

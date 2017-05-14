@@ -9,7 +9,7 @@
 #import "LocationConfiguration.h"
 #import <CoreLocation/CLLocation.h>
 
-static NSTimeInterval const kDefaultConfigurationTimeFilter = 300.0;
+static NSTimeInterval const kDefaultConfigurationTimeFilter = 5.0;
 static double const kDefaultConfigurationDistanceFilter = 200.0;
 static BOOL const kDefaultConfigurationBackgroundUpdates = YES;
 static BOOL const kDefaultConfigurationTimeFilterAllowances = YES;

@@ -71,4 +71,19 @@ static CGFloat const kButtonBorderWidth = 1.0;
     }
 }
 
++ (void)customizeDestructiveBarItem:(__kindof UIBarItem *) item
+{
+    [item setTitleTextAttributes:@{
+                                  NSFontAttributeName : [UIFont lt_navigationBartTitleFontWithWeight:UIFontWeightRegular],
+                                  NSForegroundColorAttributeName : [UIColor redColor]
+                                  }
+                       forState:UIControlStateNormal];
+    
+    [item setTitleTextAttributes:@{
+                                  NSFontAttributeName : [UIFont lt_navigationBartTitleFontWithWeight:UIFontWeightRegular],
+                                  NSForegroundColorAttributeName : [UIColor grayColor]
+                                  }
+                       forState:UIControlStateHighlighted];
+}
+
 @end

@@ -13,7 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LTDataHelper (Setup)
 
-+ (void)setupWithCompletion:(LTDataHelperVoidCompletionBlock)completion;
++ (void)setupCoreData;
++ (void)setupWithCompletion:(nullable LTDataHelperVoidCompletionBlock)completion;
 + (void)setupAtStoreURL:(nonnull NSURL *)storeUrl completion:(nullable LTDataHelperVoidCompletionBlock)completion;
 
 @end

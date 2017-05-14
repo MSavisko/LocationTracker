@@ -27,7 +27,7 @@ CGFloat const LTHistoryCellDefaultHeight = 80;
 {
     self.latitudeLabel.text = [NSString stringWithFormat:@"%@: %f", NSLocalizedString(@"Latitude", @"v1.0"), location.latitude];
     self.longitudeLabel.text = [NSString stringWithFormat:@"%@: %f", NSLocalizedString(@"Longitude", @"v1.0"), location.longitude];
-    self.dateLabel.text = [location.locationDate lt_formattedAsTimeAgo];
+    self.dateLabel.text = [[NSDate lt_dateFormatter] stringFromDate:location.locationDate];
 }
 
 - (void)awakeFromNib {
