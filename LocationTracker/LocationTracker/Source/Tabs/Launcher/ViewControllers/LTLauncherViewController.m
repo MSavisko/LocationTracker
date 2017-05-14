@@ -24,12 +24,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    self.title = NSLocalizedString(@"Launcher", @"v1.0");
-    self.navigationController.tabBarItem.title = NSLocalizedString(@"Launcher", @"v1.0");
-
-    [self.actionButton setTitle:NSLocalizedString(@"Start tracking", @"v1.0") forState:UIControlStateNormal];
-    [LTThemeHelper customizeButton:self.actionButton];
+    [self setupUI];
 
     self.locationTracker = [LocationTracker defaultTracker];
     [self.locationTracker addObserver:self];
@@ -44,6 +39,15 @@
 - (void)dealloc
 {
     [self.locationTracker removeObserver:self];
+}
+
+- (void)setupUI
+{
+    self.title = NSLocalizedString(@"Launcher", @"v1.0");
+    self.navigationController.tabBarItem.title = NSLocalizedString(@"Launcher", @"v1.0");
+
+    [self.actionButton setTitle:NSLocalizedString(@"Start tracking", @"v1.0") forState:UIControlStateNormal];
+    [LTThemeHelper customizeButton:self.actionButton];
 }
 
 #pragma mark - Action Methods

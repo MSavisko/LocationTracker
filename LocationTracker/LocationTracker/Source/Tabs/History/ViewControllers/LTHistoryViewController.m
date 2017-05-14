@@ -31,14 +31,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    self.title = NSLocalizedString(@"Location History", @"v1.0");
-    self.navigationController.tabBarItem.title = NSLocalizedString(@"History", @"v1.0");
+    [self setupUI];
 
     self.tableView.tableFooterView = [UIView new];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.allowsMultipleSelectionDuringEditing = NO;
+}
+
+- (void)setupUI
+{
+    self.title = NSLocalizedString(@"Location History", @"v1.0");
+    self.navigationController.tabBarItem.title = NSLocalizedString(@"History", @"v1.0");
 
     self.placeholderLabel.text = NSLocalizedString(@"No locations yet", @"v1.0");
     [LTThemeHelper customizeLabel:self.placeholderLabel];
