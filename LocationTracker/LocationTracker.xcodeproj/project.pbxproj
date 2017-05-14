@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		7CC2B1013B91920E31601D49 /* libPods-LocationTracker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EEE35712CF99DA7CD992BB4 /* libPods-LocationTracker.a */; };
 		9230CF951EC844700044F6FE /* NSError+LTCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 9230CF941EC844700044F6FE /* NSError+LTCommon.m */; };
+		9230CFA01EC896D00044F6FE /* LocationTracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9230CF9E1EC896D00044F6FE /* LocationTracker.xcdatamodeld */; };
+		9230CFA51EC8986F0044F6FE /* UserManagedModel+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9230CFA41EC8986F0044F6FE /* UserManagedModel+CoreDataProperties.m */; };
+		9230CFA81EC8988D0044F6FE /* UserManagedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9230CFA71EC8988D0044F6FE /* UserManagedModel.m */; };
+		9230CFAB1EC8990B0044F6FE /* LocationManagedModel+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9230CFAA1EC8990B0044F6FE /* LocationManagedModel+CoreDataProperties.m */; };
+		9230CFAE1EC8991D0044F6FE /* LocationManagedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9230CFAD1EC8991D0044F6FE /* LocationManagedModel.m */; };
 		9238AF381EC6FD54006C204E /* UIColor+LTTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238AF371EC6FD54006C204E /* UIColor+LTTheme.m */; };
 		9238AF3B1EC6FD8B006C204E /* UIFont+LTTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238AF3A1EC6FD8B006C204E /* UIFont+LTTheme.m */; };
 		9238AF401EC6FFCF006C204E /* LTTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238AF3F1EC6FFCF006C204E /* LTTabBarController.m */; };
@@ -34,6 +39,15 @@
 		9230CF921EC844380044F6FE /* LocationTracker_prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocationTracker_prefix.pch; sourceTree = "<group>"; };
 		9230CF931EC844700044F6FE /* NSError+LTCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+LTCommon.h"; sourceTree = "<group>"; };
 		9230CF941EC844700044F6FE /* NSError+LTCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+LTCommon.m"; sourceTree = "<group>"; };
+		9230CF9F1EC896D00044F6FE /* LocationTracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocationTracker.xcdatamodel; sourceTree = "<group>"; };
+		9230CFA31EC8986F0044F6FE /* UserManagedModel+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UserManagedModel+CoreDataProperties.h"; sourceTree = "<group>"; };
+		9230CFA41EC8986F0044F6FE /* UserManagedModel+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UserManagedModel+CoreDataProperties.m"; sourceTree = "<group>"; };
+		9230CFA61EC8988D0044F6FE /* UserManagedModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserManagedModel.h; sourceTree = "<group>"; };
+		9230CFA71EC8988D0044F6FE /* UserManagedModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManagedModel.m; sourceTree = "<group>"; };
+		9230CFA91EC8990B0044F6FE /* LocationManagedModel+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LocationManagedModel+CoreDataProperties.h"; sourceTree = "<group>"; };
+		9230CFAA1EC8990B0044F6FE /* LocationManagedModel+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LocationManagedModel+CoreDataProperties.m"; sourceTree = "<group>"; };
+		9230CFAC1EC8991D0044F6FE /* LocationManagedModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManagedModel.h; sourceTree = "<group>"; };
+		9230CFAD1EC8991D0044F6FE /* LocationManagedModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManagedModel.m; sourceTree = "<group>"; };
 		9238AF361EC6FD54006C204E /* UIColor+LTTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+LTTheme.h"; sourceTree = "<group>"; };
 		9238AF371EC6FD54006C204E /* UIColor+LTTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+LTTheme.m"; sourceTree = "<group>"; };
 		9238AF391EC6FD8B006C204E /* UIFont+LTTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+LTTheme.h"; sourceTree = "<group>"; };
@@ -103,6 +117,46 @@
 				9230CF941EC844700044F6FE /* NSError+LTCommon.m */,
 			);
 			path = Categories;
+			sourceTree = "<group>";
+		};
+		9230CF9C1EC896C00044F6FE /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				9230CF9D1EC896C00044F6FE /* Models */,
+				9230CF9E1EC896D00044F6FE /* LocationTracker.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		9230CF9D1EC896C00044F6FE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9230CFA21EC8980D0044F6FE /* User */,
+				9230CFA11EC8980D0044F6FE /* Location */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		9230CFA11EC8980D0044F6FE /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				9230CFA91EC8990B0044F6FE /* LocationManagedModel+CoreDataProperties.h */,
+				9230CFAA1EC8990B0044F6FE /* LocationManagedModel+CoreDataProperties.m */,
+				9230CFAC1EC8991D0044F6FE /* LocationManagedModel.h */,
+				9230CFAD1EC8991D0044F6FE /* LocationManagedModel.m */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
+		9230CFA21EC8980D0044F6FE /* User */ = {
+			isa = PBXGroup;
+			children = (
+				9230CFA31EC8986F0044F6FE /* UserManagedModel+CoreDataProperties.h */,
+				9230CFA41EC8986F0044F6FE /* UserManagedModel+CoreDataProperties.m */,
+				9230CFA61EC8988D0044F6FE /* UserManagedModel.h */,
+				9230CFA71EC8988D0044F6FE /* UserManagedModel.m */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		9238AF311EC6FC5A006C204E /* Main */ = {
@@ -237,6 +291,7 @@
 		9245B98C1EC624180044F47D /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				9230CF9C1EC896C00044F6FE /* CoreData */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -449,10 +504,15 @@
 				9238AF651EC71FB6006C204E /* LocationConfiguration.m in Sources */,
 				9238AF5B1EC710C2006C204E /* LTHistoryViewController.m in Sources */,
 				9238AF581EC70AFB006C204E /* LTLauncherViewController.m in Sources */,
+				9230CFA51EC8986F0044F6FE /* UserManagedModel+CoreDataProperties.m in Sources */,
 				9238AF621EC71F72006C204E /* LocationTracker.m in Sources */,
 				9238AF551EC70A58006C204E /* LTBaseViewController.m in Sources */,
+				9230CFAB1EC8990B0044F6FE /* LocationManagedModel+CoreDataProperties.m in Sources */,
 				9238AF4E1EC70225006C204E /* LTNavigationController.m in Sources */,
+				9230CFA81EC8988D0044F6FE /* UserManagedModel.m in Sources */,
+				9230CFA01EC896D00044F6FE /* LocationTracker.xcdatamodeld in Sources */,
 				9230CF951EC844700044F6FE /* NSError+LTCommon.m in Sources */,
+				9230CFAE1EC8991D0044F6FE /* LocationManagedModel.m in Sources */,
 				9245B9981EC624180044F47D /* main.m in Sources */,
 				9238AF381EC6FD54006C204E /* UIColor+LTTheme.m in Sources */,
 				9245B9941EC624180044F47D /* AppDelegate.m in Sources */,
@@ -606,6 +666,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		9230CF9E1EC896D00044F6FE /* LocationTracker.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9230CF9F1EC896D00044F6FE /* LocationTracker.xcdatamodel */,
+			);
+			currentVersion = 9230CF9F1EC896D00044F6FE /* LocationTracker.xcdatamodel */;
+			path = LocationTracker.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 9245B9561EC622A10044F47D /* Project object */;
 }
