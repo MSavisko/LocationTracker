@@ -77,7 +77,7 @@
 
 - (void)onLocationUpdate:(CLLocation *)location
 {
-    NSLog(@"Location. Latitude: %f, Longitude: %f", location.coordinate.latitude, location.coordinate.longitude);
+    NSLog(@"Location. Date: %@ Latitude: %f, Longitude: %f", location.timestamp, location.coordinate.latitude, location.coordinate.longitude);
 }
 
 - (void)onLocationError:(NSError *) error

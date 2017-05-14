@@ -8,13 +8,15 @@
 
 #import "LocationTracker.h"
 #import "LocationConfiguration.h"
+#import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 
 @interface LocationTracker () <CLLocationManagerDelegate>
 @property (nonatomic, strong) CLLocationManager *locationManager;
+@property (nonatomic, strong) CLLocationManager *locationTimerManager;
 @property (nonatomic, strong) NSTimer *scheduleTimer;
 
-@property (nonatomic) BOOL allowDeferredUpdates;
+@property (nonatomic) BOOL deferringUpdates;
 @property (nonatomic) NSDate *lastLocationTime;
 
 @property (nonatomic) NSMutableSet <id <LocationTrackerObserver>> *observers;
@@ -43,6 +45,9 @@
     if (self)
     {
         [self initLocationManager];
+        [self initTimerLocationManager];
+        [self initObservers];
+        [self initNotifications];
         _configuration = configuration;
     }
     
@@ -55,6 +60,28 @@
     self.locationManager.delegate = self;
     
     self.observers = [NSMutableSet set];
+}
+
+- (void) initTimerLocationManager
+{
+    self.locationTimerManager = [[CLLocationManager alloc] init];
+    self.locationTimerManager.delegate = self;
+}
+
+- (void) initObservers
+{
+    self.observers = [NSMutableSet set];
+}
+
+- (void) initNotifications
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateDeferringState:) name:UIApplicationWillResignActiveNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateDeferringState:) name:UIApplicationWillEnterForegroundNotification object:nil];
+}
+
+- (void) dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - Public Methods
@@ -103,57 +130,58 @@
 - (void)stop
 {
     [self.locationManager stopUpdatingLocation];
+    [self stopScheduleTimer];
+    [self.locationTimerManager stopUpdatingLocation];
     _isStarted = NO;
 }
 
 - (nullable CLLocation *) lastLocation
 {
-    if (self.locationManager.location.horizontalAccuracy < 0.) return nil;
-    return self.locationManager.location;
+    CLLocation *distanceLocation = self.locationManager.location;
+    CLLocation *timerLocation = self.locationTimerManager.location;
+    
+    if (!distanceLocation && !timerLocation)
+    {
+        return nil;
+    }
+    else if (!distanceLocation && timerLocation)
+    {
+        return timerLocation;
+    }
+    else if (distanceLocation && !timerLocation)
+    {
+        return distanceLocation;
+    }
+    
+    if (distanceLocation.horizontalAccuracy < 0. && timerLocation.horizontalAccuracy < 0.)
+    {
+        return nil;
+    }
+    
+    NSComparisonResult dateCompare = [distanceLocation.timestamp compare:timerLocation.timestamp];
+    
+    if (dateCompare == NSOrderedSame && dateCompare == NSOrderedDescending)
+    {
+        return distanceLocation;
+    }
+    else
+    {
+        return timerLocation;
+    }
 }
 
 #pragma mark - LocationTrackerObserver Methods
 
 - (void) addObserver:(id <LocationTrackerObserver>)observer
 {
-    if (!self.isStarted)
-    {
-        if ([self.class isServiceEnabled])
-        {
-            [self.observers addObject:observer];
-        }
-        else
-        {
-            [self observer:observer onLocationError:[NSError lt_errorWithCode:kCLErrorDenied]];
-        }
-    }
-    else
+    if ([self.class isServiceEnabled])
     {
         [self.observers addObject:observer];
     }
-    
-    /*
-    if (!self.isStarted)
-    {
-        if ([self.class isServiceEnabled])
-        {
-            [self.observers addObject:observer];
-        }
-        else
-        {
-            [self observer:observer onLocationError:[NSError lt_errorWithCode:kCLErrorDenied]];
-        }
-    }
     else
     {
-        BOOL updateLocation = ![self.observers containsObject:observer];
-        [self.observers addObject:observer];
-        if ([self lastLocationIsValid] && updateLocation)
-        {
-            [observer onLocationUpdate:self.lastLocation];
-        }
+        [self observer:observer onLocationError:[NSError lt_errorWithCode:kCLErrorDenied]];
     }
-    */
 }
 
 -(void) removeObserver:(id <LocationTrackerObserver>)observer {
@@ -199,6 +227,12 @@
     return _timeStamplocationDescriptor;
 }
 
+- (BOOL) deferringUpdates
+{
+    return _deferringUpdates && [CLLocationManager deferredLocationUpdatesAvailable] &&
+    [UIApplication sharedApplication].applicationState == UIApplicationStateBackground;
+}
+
 #pragma mark - Configuration Methods
 
 - (void) updateConfiguration:(nonnull LocationConfiguration *) configuration
@@ -206,30 +240,43 @@
     self.locationManager.desiredAccuracy = configuration.desiredAccuracy;
     self.locationManager.distanceFilter = configuration.distanceFilter;
     
+    self.locationTimerManager.desiredAccuracy = configuration.desiredAccuracy;
+    self.locationTimerManager.distanceFilter = kCLDistanceFilterNone;
+    
     if (configuration.allowTimeFilter)
     {
         [self startScheduleTimerWithInterval:configuration.timeFilter];
     }
-    
-    /*
-    if (configuration.allowDeferredUpdates && [CLLocationManager deferredLocationUpdatesAvailable])
-    {
-        self.locationManager.distanceFilter = kCLDistanceFilterNone;
-        [self.locationManager allowDeferredLocationUpdatesUntilTraveled:configuration.distanceFilter timeout:configuration.timeFilter];
-        self.allowDeferredUpdates = YES;
-    }
     else
     {
-        self.locationManager.distanceFilter = configuration.distanceFilter;
-        [self.locationManager disallowDeferredLocationUpdates];
-        self.allowDeferredUpdates = NO;
+        [self stopScheduleTimer];
     }
-     */
     
     if ([self.locationManager respondsToSelector:@selector(setAllowsBackgroundLocationUpdates:)])
     {
         self.locationManager.allowsBackgroundLocationUpdates = configuration.allowBackgroundUpdates;
+        self.locationTimerManager.allowsBackgroundLocationUpdates = configuration.allowBackgroundUpdates;
     }
+}
+
+- (void) updateDeferringState:(NSNotification *) notification
+{
+    /*
+    if (notification.name == UIApplicationWillResignActiveNotification && _configuration.allowDeferredUpdates && self.isStarted)
+    {
+        [self stopScheduleTimer];
+        _locationManager.distanceFilter = kCLDistanceFilterNone;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.locationManager allowDeferredLocationUpdatesUntilTraveled:_configuration.distanceFilter timeout:_configuration.timeFilter];
+        });
+    }
+    else if (notification.name == UIApplicationWillEnterForegroundNotification && _configuration.allowDeferredUpdates && self.isStarted)
+    {
+        [self startScheduleTimerWithInterval:_configuration.timeFilter];
+        [self.locationManager disallowDeferredLocationUpdates];
+        _locationManager.distanceFilter = _configuration.distanceFilter;
+    }
+    */
 }
 
 #pragma mark - Private Location Methods
@@ -264,7 +311,8 @@
 {
     if (self.isStarted)
     {
-        [self.locationManager requestLocation];
+        [self.locationTimerManager requestAlwaysAuthorization];
+        [self.locationTimerManager requestLocation];
     }
 }
 
@@ -290,11 +338,6 @@
 - (BOOL) isLocationUnknownError:(NSError *) error
 {
     return (error.code == kCLErrorLocationUnknown);
-}
-
-- (BOOL)lastLocationIsValid
-{
-    return (([self lastLocation] != nil) && ([self.lastLocationTime timeIntervalSinceNow] > -300.0));
 }
 
 - (CLLocation *) latestLocationFromList:(NSArray<CLLocation *> *)locationsList
