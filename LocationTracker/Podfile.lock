@@ -1,17 +1,14 @@
 PODS:
-  - KVOController (1.2.0)
   - MagicalRecord (2.3.2):
     - MagicalRecord/Core (= 2.3.2)
   - MagicalRecord/Core (2.3.2)
 
 DEPENDENCIES:
-  - KVOController (~> 1.0)
   - MagicalRecord
 
 SPEC CHECKSUMS:
-  KVOController: d72ace34afea42468329623b3379ab3cd1d286b6
   MagicalRecord: 53bed74b4323b930992a725be713e53b37d19755
 
-PODFILE CHECKSUM: 35c2e06d43ff1d24e43868d61a6a0b76f5cd155e
+PODFILE CHECKSUM: 857b914de436fd5538edac04e4be46f56a4f5b5f
 
 COCOAPODS: 1.2.0

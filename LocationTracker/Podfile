@@ -4,6 +4,5 @@ platform :ios, "9.0"
 target 'LocationTracker' do
 
 pod 'MagicalRecord'
-pod 'KVOController', '~> 1.0'
 
 end
