@@ -14,6 +14,7 @@
 @property (nonatomic) NSTimeInterval timeFilter;
 @property (nonatomic) BOOL allowDeferredUpdates;
 @property (nonatomic) BOOL allowBackgroundUpdates;
+@property (nonatomic) BOOL allowTimeFilter;
 @property (nonatomic) double desiredAccuracy;
 
 + (instancetype) defaultConfiguration;

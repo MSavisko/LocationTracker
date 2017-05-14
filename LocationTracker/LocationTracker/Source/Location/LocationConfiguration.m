@@ -9,10 +9,11 @@
 #import "LocationConfiguration.h"
 #import <CoreLocation/CLLocation.h>
 
-static NSTimeInterval const kDefaultConfigurationTimeFilter = 300.0;
+static NSTimeInterval const kDefaultConfigurationTimeFilter = 5.0;
 static double const kDefaultConfigurationDistanceFilter = 200.0;
 static BOOL const kDefaultConfigurationDeferredUpdates = YES;
 static BOOL const kDefaultConfigurationBackgroundUpdates = YES;
+static BOOL const kDefaultConfigurationTimeFilterAllowances = YES;
 
 @implementation LocationConfiguration
 
@@ -25,6 +26,7 @@ static BOOL const kDefaultConfigurationBackgroundUpdates = YES;
     configuration.distanceFilter = kDefaultConfigurationDistanceFilter;
     configuration.allowDeferredUpdates = kDefaultConfigurationDeferredUpdates;
     configuration.allowBackgroundUpdates = kDefaultConfigurationBackgroundUpdates;
+    configuration.allowTimeFilter = kDefaultConfigurationTimeFilterAllowances;
     configuration.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
     return configuration;
 }
@@ -42,6 +44,7 @@ static BOOL const kDefaultConfigurationBackgroundUpdates = YES;
         _allowDeferredUpdates = NO;
         _allowBackgroundUpdates = NO;
         _desiredAccuracy = kCLLocationAccuracyBest;
+        _allowTimeFilter = NO;
     }
     
     return self;

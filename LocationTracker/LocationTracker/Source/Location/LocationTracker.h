@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CLLocation.h>
+#import <CoreLocation/CLError.h>
 
 @class LocationConfiguration;
 

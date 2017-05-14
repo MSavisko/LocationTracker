@@ -12,6 +12,7 @@
 
 @interface LocationTracker () <CLLocationManagerDelegate>
 @property (nonatomic, strong) CLLocationManager *locationManager;
+@property (nonatomic, strong) NSTimer *scheduleTimer;
 
 @property (nonatomic) BOOL allowDeferredUpdates;
 @property (nonatomic) NSDate *lastLocationTime;
@@ -42,7 +43,7 @@
     if (self)
     {
         [self initLocationManager];
-        [self updateConfiguration:configuration];
+        _configuration = configuration;
     }
     
     return self;
@@ -52,6 +53,8 @@
 {
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
+    
+    self.observers = [NSMutableSet set];
 }
 
 #pragma mark - Public Methods
@@ -89,6 +92,7 @@
     {
         if ([self.class isServiceEnabled])
         {
+            [self updateConfiguration:_configuration];
             [self.locationManager requestAlwaysAuthorization];
             [self.locationManager startUpdatingLocation];
             _isStarted = YES;
@@ -110,7 +114,8 @@
 
 #pragma mark - LocationTrackerObserver Methods
 
--(void) addObserver:(id <LocationTrackerObserver>)observer {
+- (void) addObserver:(id <LocationTrackerObserver>)observer
+{
     if (!self.isStarted)
     {
         if ([self.class isServiceEnabled])
@@ -121,7 +126,26 @@
         {
             [self observer:observer onLocationError:[NSError lt_errorWithCode:kCLErrorDenied]];
         }
-    } else {
+    }
+    else
+    {
+        [self.observers addObject:observer];
+    }
+    
+    /*
+    if (!self.isStarted)
+    {
+        if ([self.class isServiceEnabled])
+        {
+            [self.observers addObject:observer];
+        }
+        else
+        {
+            [self observer:observer onLocationError:[NSError lt_errorWithCode:kCLErrorDenied]];
+        }
+    }
+    else
+    {
         BOOL updateLocation = ![self.observers containsObject:observer];
         [self.observers addObject:observer];
         if ([self lastLocationIsValid] && updateLocation)
@@ -129,6 +153,7 @@
             [observer onLocationUpdate:self.lastLocation];
         }
     }
+    */
 }
 
 -(void) removeObserver:(id <LocationTrackerObserver>)observer {
@@ -178,8 +203,15 @@
 
 - (void) updateConfiguration:(nonnull LocationConfiguration *) configuration
 {
-    _configuration = configuration;
+    self.locationManager.desiredAccuracy = configuration.desiredAccuracy;
+    self.locationManager.distanceFilter = configuration.distanceFilter;
     
+    if (configuration.allowTimeFilter)
+    {
+        [self startScheduleTimerWithInterval:configuration.timeFilter];
+    }
+    
+    /*
     if (configuration.allowDeferredUpdates && [CLLocationManager deferredLocationUpdatesAvailable])
     {
         self.locationManager.distanceFilter = kCLDistanceFilterNone;
@@ -192,16 +224,15 @@
         [self.locationManager disallowDeferredLocationUpdates];
         self.allowDeferredUpdates = NO;
     }
+     */
     
     if ([self.locationManager respondsToSelector:@selector(setAllowsBackgroundLocationUpdates:)])
     {
         self.locationManager.allowsBackgroundLocationUpdates = configuration.allowBackgroundUpdates;
     }
-    
-    self.locationManager.desiredAccuracy = configuration.desiredAccuracy;
 }
 
-#pragma mark - Private
+#pragma mark - Private Location Methods
 
 - (void)processLocation:(CLLocation *)location
 {
@@ -228,6 +259,33 @@
         }
     }
 }
+
+- (void) quickRequestLocation
+{
+    if (self.isStarted)
+    {
+        [self.locationManager requestLocation];
+    }
+}
+
+#pragma mark - Private Timer Methods
+
+- (void) stopScheduleTimer
+{
+    [self.scheduleTimer invalidate];
+    self.scheduleTimer = nil;
+}
+
+- (void) startScheduleTimerWithInterval:(NSTimeInterval)timeInterval
+{
+    [self stopScheduleTimer];
+    
+    self.scheduleTimer = [NSTimer timerWithTimeInterval:timeInterval target:self selector:@selector(quickRequestLocation) userInfo:nil repeats:YES];
+    
+    [[NSRunLoop currentRunLoop] addTimer:self.scheduleTimer forMode:NSRunLoopCommonModes];
+}
+
+#pragma mark - Private Helpers Methods
 
 - (BOOL) isLocationUnknownError:(NSError *) error
 {
