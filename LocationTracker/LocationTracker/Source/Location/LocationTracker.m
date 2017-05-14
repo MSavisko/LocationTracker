@@ -16,7 +16,6 @@
 @property (nonatomic, strong) CLLocationManager *locationTimerManager;
 @property (nonatomic, strong) NSTimer *scheduleTimer;
 
-@property (nonatomic) BOOL deferringUpdates;
 @property (nonatomic) NSDate *lastLocationTime;
 
 @property (nonatomic) NSMutableSet <id <LocationTrackerObserver>> *observers;
@@ -47,7 +46,6 @@
         [self initLocationManager];
         [self initTimerLocationManager];
         [self initObservers];
-        [self initNotifications];
         _configuration = configuration;
     }
     
@@ -58,8 +56,6 @@
 {
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
-    
-    self.observers = [NSMutableSet set];
 }
 
 - (void) initTimerLocationManager
@@ -71,17 +67,6 @@
 - (void) initObservers
 {
     self.observers = [NSMutableSet set];
-}
-
-- (void) initNotifications
-{
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateDeferringState:) name:UIApplicationWillResignActiveNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateDeferringState:) name:UIApplicationWillEnterForegroundNotification object:nil];
-}
-
-- (void) dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - Public Methods
@@ -200,15 +185,11 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations
 {
+    //Use latestLocationFromList: because locationManager:didUpdateLocations: do NOT return objects in chronological order as metion in docs: "locations is an array of CLLocation objects in chronological order".
     [self processLocation:[self latestLocationFromList:locations]];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
-{
-    [self processLocationError:error];
-}
-
-- (void)locationManager:(CLLocationManager *)manager didFinishDeferredUpdatesWithError:(NSError *)error
 {
     [self processLocationError:error];
 }
@@ -225,12 +206,6 @@
     }
     
     return _timeStamplocationDescriptor;
-}
-
-- (BOOL) deferringUpdates
-{
-    return _deferringUpdates && [CLLocationManager deferredLocationUpdatesAvailable] &&
-    [UIApplication sharedApplication].applicationState == UIApplicationStateBackground;
 }
 
 #pragma mark - Configuration Methods
@@ -257,26 +232,6 @@
         self.locationManager.allowsBackgroundLocationUpdates = configuration.allowBackgroundUpdates;
         self.locationTimerManager.allowsBackgroundLocationUpdates = configuration.allowBackgroundUpdates;
     }
-}
-
-- (void) updateDeferringState:(NSNotification *) notification
-{
-    /*
-    if (notification.name == UIApplicationWillResignActiveNotification && _configuration.allowDeferredUpdates && self.isStarted)
-    {
-        [self stopScheduleTimer];
-        _locationManager.distanceFilter = kCLDistanceFilterNone;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.locationManager allowDeferredLocationUpdatesUntilTraveled:_configuration.distanceFilter timeout:_configuration.timeFilter];
-        });
-    }
-    else if (notification.name == UIApplicationWillEnterForegroundNotification && _configuration.allowDeferredUpdates && self.isStarted)
-    {
-        [self startScheduleTimerWithInterval:_configuration.timeFilter];
-        [self.locationManager disallowDeferredLocationUpdates];
-        _locationManager.distanceFilter = _configuration.distanceFilter;
-    }
-    */
 }
 
 #pragma mark - Private Location Methods
