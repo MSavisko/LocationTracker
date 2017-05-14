@@ -32,7 +32,7 @@
         NSBatchDeleteResult *result = [_context executeRequest:delete error:&error];
         if (result)
         {
-            NSLog(@"deleted %@ objects of '%@'", result.result, entityName);
+            //
         }
         
         if (background)

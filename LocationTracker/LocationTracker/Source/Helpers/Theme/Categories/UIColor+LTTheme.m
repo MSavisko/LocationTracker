@@ -76,7 +76,7 @@
 
 + (UIColor *)lt_placeholderTextColor
 {
-    return [self lt_secondaryColor];
+    return [self lt_grayColor];
 }
 
 @end

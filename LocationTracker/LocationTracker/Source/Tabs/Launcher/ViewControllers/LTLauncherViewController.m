@@ -73,8 +73,6 @@
 
 - (void)onLocationUpdate:(CLLocation *)location
 {
-    NSLog(@"Location. Date: %@ Latitude: %f, Longitude: %f", location.timestamp, location.coordinate.latitude, location.coordinate.longitude);
-    
     [LTDataHelper saveLocations:@[location] withCompletion:nil];
 }
 
