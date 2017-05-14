@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7CC2B1013B91920E31601D49 /* libPods-LocationTracker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EEE35712CF99DA7CD992BB4 /* libPods-LocationTracker.a */; };
+		9230CF951EC844700044F6FE /* NSError+LTCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 9230CF941EC844700044F6FE /* NSError+LTCommon.m */; };
 		9238AF381EC6FD54006C204E /* UIColor+LTTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238AF371EC6FD54006C204E /* UIColor+LTTheme.m */; };
 		9238AF3B1EC6FD8B006C204E /* UIFont+LTTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238AF3A1EC6FD8B006C204E /* UIFont+LTTheme.m */; };
 		9238AF401EC6FFCF006C204E /* LTTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238AF3F1EC6FFCF006C204E /* LTTabBarController.m */; };
@@ -30,6 +31,9 @@
 /* Begin PBXFileReference section */
 		0EEE35712CF99DA7CD992BB4 /* libPods-LocationTracker.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LocationTracker.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		36AD4B9F3C68D7BC7346C71D /* Pods-LocationTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationTracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-LocationTracker/Pods-LocationTracker.release.xcconfig"; sourceTree = "<group>"; };
+		9230CF921EC844380044F6FE /* LocationTracker_prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocationTracker_prefix.pch; sourceTree = "<group>"; };
+		9230CF931EC844700044F6FE /* NSError+LTCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+LTCommon.h"; sourceTree = "<group>"; };
+		9230CF941EC844700044F6FE /* NSError+LTCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+LTCommon.m"; sourceTree = "<group>"; };
 		9238AF361EC6FD54006C204E /* UIColor+LTTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+LTTheme.h"; sourceTree = "<group>"; };
 		9238AF371EC6FD54006C204E /* UIColor+LTTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+LTTheme.m"; sourceTree = "<group>"; };
 		9238AF391EC6FD8B006C204E /* UIFont+LTTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+LTTheme.h"; sourceTree = "<group>"; };
@@ -90,6 +94,15 @@
 				36AD4B9F3C68D7BC7346C71D /* Pods-LocationTracker.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		9230CF8E1EC841720044F6FE /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				9230CF931EC844700044F6FE /* NSError+LTCommon.h */,
+				9230CF941EC844700044F6FE /* NSError+LTCommon.m */,
+			);
+			path = Categories;
 			sourceTree = "<group>";
 		};
 		9238AF311EC6FC5A006C204E /* Main */ = {
@@ -231,6 +244,7 @@
 		9245B98D1EC624180044F47D /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				9230CF8E1EC841720044F6FE /* Categories */,
 				9245B9A21EC63BD20044F47D /* Base Objects */,
 				9245B9A61EC63CE70044F47D /* Theme */,
 				9238AF5C1EC71F00006C204E /* Location */,
@@ -247,6 +261,7 @@
 				9245B9901EC624180044F47D /* Info.plist */,
 				9245B9911EC624180044F47D /* LaunchScreen.storyboard */,
 				9245B9921EC624180044F47D /* main.m */,
+				9230CF921EC844380044F6FE /* LocationTracker_prefix.pch */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -334,6 +349,11 @@
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = 4KQC9K68AM;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -432,6 +452,7 @@
 				9238AF621EC71F72006C204E /* LocationTracker.m in Sources */,
 				9238AF551EC70A58006C204E /* LTBaseViewController.m in Sources */,
 				9238AF4E1EC70225006C204E /* LTNavigationController.m in Sources */,
+				9230CF951EC844700044F6FE /* NSError+LTCommon.m in Sources */,
 				9245B9981EC624180044F47D /* main.m in Sources */,
 				9238AF381EC6FD54006C204E /* UIColor+LTTheme.m in Sources */,
 				9245B9941EC624180044F47D /* AppDelegate.m in Sources */,
@@ -537,6 +558,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 4KQC9K68AM;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/LocationTracker/Supporting Files/LocationTracker_prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/LocationTracker/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -551,6 +574,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 4KQC9K68AM;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/LocationTracker/Supporting Files/LocationTracker_prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/LocationTracker/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

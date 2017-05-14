@@ -11,17 +11,26 @@
 
 @class LocationConfiguration;
 
+NS_ASSUME_NONNULL_BEGIN
+
+@protocol LocationTrackerObserver
+
+@optional
+- (void)onLocationUpdate:(CLLocation *)location;
+- (void)onLocationError:(NSError *) error;
+@end
+
 @interface LocationTracker : NSObject
 
 // clue for improper use (produces compile time error)
 - (nullable instancetype)init __attribute__((unavailable("init not available, call defaultTracker instead")));
 + (nullable instancetype) new __attribute__((unavailable("new not available, call defaultTracker instead")));
 
-@property (nonatomic, strong, readonly, nonnull) LocationConfiguration *configuration;
+@property (nonatomic, strong, readonly) LocationConfiguration *configuration;
 @property (nonatomic, readonly) BOOL isStarted;
 
 + (nullable instancetype) defaultTracker;
-+ (nullable instancetype) trackerWithConfiguration:(nonnull LocationConfiguration *) configuration;
++ (nullable instancetype) trackerWithConfiguration:(LocationConfiguration *) configuration;
 
 + (BOOL) isLocationServiceRequested;
 + (BOOL) isServiceEnabled;
@@ -31,4 +40,9 @@
 
 - (nullable CLLocation *) lastLocation;
 
+- (void)addObserver:(id <LocationTrackerObserver>)observer;
+- (void)removeObserver:(id <LocationTrackerObserver>)observer;
+
 @end
+
+NS_ASSUME_NONNULL_END
