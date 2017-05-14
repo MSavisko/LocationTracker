@@ -15,5 +15,5 @@ Test app that provides geo-tracking with history list.
 
 # Important
 1. When the app goes to background, do not use allowDeferredLocationUpdatesUntilTraveled:timeout:, because on iPhone 6s, 6sP, 7 and 7P deferredLocationUpdatesAvailable: always return NO and method NOT work.
-2. For timeFilter and LocationTracker used two location manager. The reason of it, that methods requestLocation can NOT be used concurrently with startUpdatingLocation, that used for distanceFilter.
+2. For timeFilter and distanceFilter used two location manager. The reason of it, that methods requestLocation can NOT be used concurrently with startUpdatingLocation, that used for distanceFilter.
 3. CLCircularRegion NOT used because there is NO point in requirement about battery usage.
