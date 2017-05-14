@@ -20,3 +20,4 @@ NS_ASSUME_NONNULL_BEGIN
 NS_ASSUME_NONNULL_END
 
 #import "UserManagedModel+CoreDataProperties.h"
+#import "NSManagedObject+LTCommon.h"

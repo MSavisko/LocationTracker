@@ -8,6 +8,8 @@
 
 #import <CoreData/CoreData.h>
 #import "LTCommonManagedModelProtocol.h"
+#import "NSDictionary+LTSecure.h"
+#import "NSString+LT.h"
 
 @interface NSManagedObject (LTCommon) <LTCommonManagedModelProtocol>
 

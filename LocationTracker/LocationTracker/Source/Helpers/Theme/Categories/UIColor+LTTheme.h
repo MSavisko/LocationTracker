@@ -19,4 +19,7 @@
 + (UIColor *)lt_buttonTitleColor;
 + (UIColor *)lt_buttonBorderColor;
 
++ (UIColor *)lt_historyCellTitleColor;
++ (UIColor *)lt_historyCellDateColor;
+
 @end

@@ -11,6 +11,8 @@
 #import "UIColor+LTTheme.h"
 #import "UIFont+LTTheme.h"
 
+#import "LTHistoryCell.h"
+
 static CGFloat const kButtonCornerRadius = 5.0;
 static CGFloat const kButtonBorderWidth = 1.0;
 
@@ -56,6 +58,17 @@ static CGFloat const kButtonBorderWidth = 1.0;
     button.layer.cornerRadius = kButtonCornerRadius;
     button.layer.borderColor = [UIColor lt_buttonBorderColor].CGColor;
     button.layer.borderWidth = kButtonBorderWidth;
+}
+
++ (void)customizeCell:(__kindof UITableViewCell *) cell
+{
+    if ([cell isKindOfClass:[LTHistoryCell class]])
+    {
+        [(LTHistoryCell *) cell latitudeLabel].textColor = [UIColor lt_historyCellTitleColor];
+        [(LTHistoryCell *) cell longitudeLabel].textColor = [UIColor lt_historyCellTitleColor];
+        [(LTHistoryCell *) cell dateLabel].textColor = [UIColor lt_historyCellDateColor];
+        [(LTHistoryCell *) cell dateLabel].font = [UIFont lt_regularFontWithWeight:UIFontWeightRegular];
+    }
 }
 
 @end

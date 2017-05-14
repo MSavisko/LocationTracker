@@ -1,5 +1,5 @@
 //
-//  LTDataHelper.h
+//  NSDate+LTTimeAgo.h
 //  LocationTracker
 //
 //  Created by Maksym Savisko on 5/14/17.
@@ -8,12 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@class NSManagedObjectContext;
+@interface NSDate (LTTimeAgo)
 
-NS_ASSUME_NONNULL_BEGIN
-
-@interface LTDataHelper : NSObject
+- (NSString *)lt_formattedAsTimeAgo;
 
 @end
-
-NS_ASSUME_NONNULL_END

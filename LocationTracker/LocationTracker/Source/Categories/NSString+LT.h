@@ -1,5 +1,5 @@
 //
-//  LTDataHelper.h
+//  NSString+LT.h
 //  LocationTracker
 //
 //  Created by Maksym Savisko on 5/14/17.
@@ -8,12 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@class NSManagedObjectContext;
+@interface NSString (LT)
 
-NS_ASSUME_NONNULL_BEGIN
-
-@interface LTDataHelper : NSObject
++ (nonnull instancetype) lt_uuidString;
 
 @end
-
-NS_ASSUME_NONNULL_END

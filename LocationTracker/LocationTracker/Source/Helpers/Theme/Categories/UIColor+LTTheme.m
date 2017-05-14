@@ -64,4 +64,14 @@
     return [UIColor lt_primaryGreenColor];
 }
 
++ (UIColor *)lt_historyCellTitleColor
+{
+    return [self lt_primaryGreyColor];
+}
+
++ (UIColor *)lt_historyCellDateColor
+{
+    return [self lt_primaryGreenColor];
+}
+
 @end

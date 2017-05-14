@@ -1,5 +1,5 @@
 //
-//  LTDataHelper.h
+//  NSIndexPath+LTExtension.h
 //  LocationTracker
 //
 //  Created by Maksym Savisko on 5/14/17.
@@ -7,13 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-@class NSManagedObjectContext;
+@interface NSIndexPath (LTExtension)
 
-NS_ASSUME_NONNULL_BEGIN
-
-@interface LTDataHelper : NSObject
+- (BOOL)lt_isEqualToIndexPath:(NSIndexPath *)indexPath;
 
 @end
-
-NS_ASSUME_NONNULL_END

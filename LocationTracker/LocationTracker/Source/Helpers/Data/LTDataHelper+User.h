@@ -7,7 +7,16 @@
 //
 
 #import "LTDataHelper.h"
+#import "UserManagedModel.h"
+
+NS_ASSUME_NONNULL_BEGIN
 
 @interface LTDataHelper (User)
 
++ (UserManagedModel *)currentUserModelInContext:(NSManagedObjectContext *)context;
+
++ (UserManagedModel *)currentUserModel;;
+
 @end
+
+NS_ASSUME_NONNULL_END

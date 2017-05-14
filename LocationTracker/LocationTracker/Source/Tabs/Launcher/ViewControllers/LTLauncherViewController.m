@@ -9,6 +9,7 @@
 #import "LTLauncherViewController.h"
 #import "LTThemeHelper.h"
 #import "LocationTracker.h"
+#import "LTDataHelper+Location.h"
 
 @interface LTLauncherViewController () <LocationTrackerObserver>
 @property (weak, nonatomic) IBOutlet UIButton *actionButton;
@@ -78,6 +79,8 @@
 - (void)onLocationUpdate:(CLLocation *)location
 {
     NSLog(@"Location. Date: %@ Latitude: %f, Longitude: %f", location.timestamp, location.coordinate.latitude, location.coordinate.longitude);
+    
+    [LTDataHelper saveLocations:@[location] withCompletion:nil];
 }
 
 - (void)onLocationError:(NSError *) error

@@ -15,5 +15,6 @@
 + (void)customizeNavigationBar:(__kindof UINavigationBar *)navigationBar;
 + (void)customizeButton:(__kindof UIButton *) button;
 + (void)customizeLayoutButton:(__kindof UIButton *) button;
++ (void)customizeCell:(__kindof UITableViewCell *) cell;
 
 @end

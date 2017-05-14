@@ -7,8 +7,14 @@
 //
 
 #import "UserManagedModel.h"
+#import "UserManagedModelKeys.h"
 #import "LocationManagedModel.h"
 
 @implementation UserManagedModel
+
+- (void) createWithInfo:(NSDictionary *) info inContext:(NSManagedObjectContext *) context
+{
+    self.dataId = [info lt_getSecureStringForKey:UserDataIdKey defaultString:[NSString lt_uuidString]];
+}
 
 @end

@@ -8,9 +8,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class NSManagedObjectContext;
+
 @protocol LTCommonManagedModelProtocol <NSObject>
 
-
+- (void) createWithInfo:(nullable NSDictionary *) info inContext:(NSManagedObjectContext *) context;
 
 @end
 

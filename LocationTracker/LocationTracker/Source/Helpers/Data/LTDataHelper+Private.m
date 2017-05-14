@@ -10,6 +10,11 @@
 
 @implementation LTDataHelper (Private)
 
++ (NSManagedObjectContext *) mainContext
+{
+    return [NSManagedObjectContext MR_defaultContext];
+}
+
 + (void)saveWithBlock:(LTDataHelperExecuteOnContextBlock)executionBlock
 {
     [self saveWithBlock:executionBlock backgroundQueue:YES];

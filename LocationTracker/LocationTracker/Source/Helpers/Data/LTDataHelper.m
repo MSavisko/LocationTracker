@@ -7,12 +7,8 @@
 //
 
 #import "LTDataHelper.h"
+#import "LTDataHelper+Private.h"
 
 @implementation LTDataHelper
-
-+ (NSManagedObjectContext *) mainContext
-{
-    return nil;
-}
 
 @end
