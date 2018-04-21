@@ -3,6 +3,6 @@ platform :ios, "9.0"
 
 target 'LocationTracker' do
 
-pod 'MagicalRecord'
+pod 'MagicalRecord', :inhibit_warnings => true
 
 end
