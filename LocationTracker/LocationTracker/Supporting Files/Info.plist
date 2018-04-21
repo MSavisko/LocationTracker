@@ -24,6 +24,10 @@
 	<string></string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>Using location for collecting changes in time and in the background</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Using location for collecting changes in time</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Used for defining current and last position of user</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
