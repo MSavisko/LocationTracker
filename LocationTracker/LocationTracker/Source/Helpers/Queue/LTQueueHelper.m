@@ -17,7 +17,7 @@
     static dispatch_queue_t updatingQueue = nil;
     dispatch_once(&onceToken, ^{
 
-        updatingQueue = dispatch_queue_create("com.MaksymSavisko.LocationTracker.concurrent.queue", DISPATCH_QUEUE_CONCURRENT);
+        updatingQueue = dispatch_queue_create("com.LocationTracker.concurrent.queue", DISPATCH_QUEUE_CONCURRENT);
     });
 
     return updatingQueue;
