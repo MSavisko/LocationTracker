@@ -11,7 +11,7 @@
 
 @class NSManagedObjectContext;
 
-typedef void (^LTDataHelperVoidCompletionBlock)();
+typedef void (^LTDataHelperVoidCompletionBlock)(void);
 
 typedef void (^LTDataHelperExecuteOnContextBlock)(NSManagedObjectContext *__nonnull context);
 
